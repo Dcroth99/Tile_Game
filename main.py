@@ -235,6 +235,7 @@ def level3():
 
 
 
+
     play.draw()
     play.movement()
 
@@ -304,6 +305,7 @@ main function
 """
 lives = 10
 level = 1
+
 # Create an instance of the player
 play = player(25, 475)
 # main function, where the game runs
@@ -343,3 +345,4 @@ def main():
         
         
 main() 
+
