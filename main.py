@@ -9,7 +9,7 @@ import time
 # Define the window for Game to be played in
 WIN = pygame.display.set_mode((500, 500))
 pygame.init()
-
+font = pygame.font.SysFont("Ariel", 30)
 """
     Colors
     
@@ -224,6 +224,7 @@ def level3():
         pygame.draw.rect(WIN, colors["white"], (play.x-25, play.y-25, 50, 50))
 
     else:
+        lives = lives - 1
         play.x, play.y = path_coords[0]
         previous_positions = [path_coords[0]]
         
@@ -253,12 +254,11 @@ def level4():
     global play, previous_positions, level
     
     # Define the coordinates of each tile in the path
-    path_coords = [(125, 425), (125, 375), (125, 325),
-                   (75, 325), (75, 275), (125, 275), (125, 225),
-                   (175, 225), (225, 225), (275, 225), (325, 225),
-                   (325, 275), (325, 325), (375, 325), (425, 325),
-                   (425, 275), (425, 225), (425, 175), (425, 125), (425, 75)]
-    # Check if the player is on a tile in the path
+    path_coords = [(475, 375), (475, 325), (475, 275), (475, 275), 
+    (375, 275), (325, 275), (325, 325), (325, 375), (275, 375), 
+    (225, 375), (175, 375), (175, 325), (175, 275), (175, 225), 
+    (175, 175), (225, 175), (275, 175), (325, 175), (375, 175), 
+    (425, 175), (475, 175)]
     current_pos = (play.x, play.y)
     if current_pos in path_coords:
 
@@ -268,6 +268,7 @@ def level4():
         pygame.draw.rect(WIN, colors["white"], (play.x-25, play.y-25, 50, 50))
 
     else:
+        lives = lives - 1
         play.x, play.y = path_coords[0]
         previous_positions = [path_coords[0]]
         
@@ -330,8 +331,17 @@ def main():
             level3()
         if level == 4:
             level4()
+       
+       
+       
+       # to reset the lives
         elif lives == 0:
             level = 1
+
+        lives_text = font.render("Lives: " + str(lives), 1, (0,0,0))
+        WIN.blit(lives_text, (10, 10))
+        
+
 
 
                   
