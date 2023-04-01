@@ -11,21 +11,12 @@ pygame.init()
 
 """
 
-
-
-
-
-
     Colors
     
-        | |
-        | |
-        \/
+        | 
+        | 
+        v
 
-
-
-        
-        
 """
 
 # Define the colors to be used in the game
@@ -42,11 +33,10 @@ colors = {
     "pink": (0, 0, 0),
 }
 
-"""
-
-          /\
-          | |
-          | |
+"""       
+        ^
+        |
+        |
 
      Colors
 
@@ -54,9 +44,9 @@ colors = {
 
     Player Class
 
-           | |
-           | |
-           \/
+        |
+        |
+        v
 
 
 """
@@ -92,22 +82,21 @@ class player:
 
 """
 
-
-
-                /\
-                | |
-                | |
+                ^
+                |
+                |
                 
-       Player Class 
+            Player Class 
 
 
 
 
-       Background
+            Background
        
-                | |
-                | |
-                \/
+                |
+                |
+                v
+
                               """
 
 
@@ -138,10 +127,9 @@ def background():
 
 
 """
-
-               /\
-               | |
-               | |
+               ^
+               |
+               |
 
        Background
 
@@ -149,9 +137,10 @@ def background():
 
        Function For level One 
        
-                | |
-                | |
-                \/
+                |
+                |
+                v
+
                               """
 
 
@@ -188,9 +177,12 @@ def level1():
 
 
 """
-                      /\
-                      | |
-                      | |
+                      
+                ^
+                |
+                |
+
+
                       
      --  Function For level One 
        
@@ -199,12 +191,9 @@ def level1():
     --  Main Function
     
     
-                    | |
-                    | |
-                    \/
-                     
-
-
+                |
+                |
+                v
 
 
                               """
