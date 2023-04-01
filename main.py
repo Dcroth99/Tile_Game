@@ -22,14 +22,16 @@ font = pygame.font.SysFont("Ariel", 30)
 colors = {
     "black": (0, 0, 0),
     "white": (255, 255, 255),
-    "red": (255, 0, 0),
-    "orange": (255, 128, 0),
+    "red": (180, 50, 0),
+    "orange": (200, 128, 0),
     "yellow": (255, 255, 0),
     "green": (0, 255, 0),
     "green1": (0, 190, 0),
     "blue": (0, 0, 220),
     "purple": (255, 51, 255),
     "pink": (0, 0, 0),
+    "gray": (162, 162, 162),
+
 }
 
 """       
@@ -50,10 +52,55 @@ class player:
         self.width = 50
         self.height = 20
         self.vel = 50
+        self.eyes_open = True  
+        self.last_blink_time = 0
 
 
     def draw(self):
         pygame.draw.circle(WIN, colors["black"], (self.x, self.y), self.height)
+        pygame.draw.rect(WIN, colors["white"], (self.x-12, self.y-10, 8, 8))
+        pygame.draw.rect(WIN, colors["white"], (self.x+5, self.y-10, 8, 8))
+        pygame.draw.ellipse(WIN, colors["white"], (self.x-10, self.y+5, 20, 2))
+        pygame.draw.circle(WIN, colors["black"], (self.x-7.25, self.y-6), 3)
+        pygame.draw.circle(WIN, colors["black"], (self.x+9, self.y-6), 3)
+        pygame.draw.rect(WIN, colors["orange"], (self.x+5, self.y+5, 12, 3))
+        pygame.draw.rect(WIN, colors["white"], (self.x+10, self.y+5, 8, 3))
+        pygame.draw.circle(WIN, colors["red"], (self.x+17, self.y+6.9), 2)
+        
+        line_thickness = 1
+        line_length = 12
+        num_lines = 3
+        line_spacing = 4
+
+        for i in range(num_lines):
+            start_point = (self.x+17, self.y+6.9)
+            end_point = (self.x+17, self.y+6.9-(line_length+i*line_spacing))
+            pygame.draw.line(WIN, colors["gray"], start_point, end_point, line_thickness)
+       
+        current_time = time.time()
+        if self.eyes_open:
+            if current_time - self.last_blink_time > 4:
+                self.eyes_open = False
+                self.last_blink_time = current_time
+        else:
+            if current_time - self.last_blink_time > 0.5:
+                self.eyes_open = True
+                self.last_blink_time = current_time
+
+        # draw the eyes based on their current state
+        eye_color = colors["white"] if self.eyes_open else colors["black"]
+        pygame.draw.rect(WIN, eye_color, (self.x-12, self.y-10, 8, 8))
+        pygame.draw.rect(WIN, eye_color, (self.x+5, self.y-10, 8, 8))
+        pygame.draw.circle(WIN, colors["black"], (self.x-7.25, self.y-6), 3)
+        pygame.draw.circle(WIN, colors["black"], (self.x+9, self.y-6), 3)
+
+
+
+
+            
+                
+                
+        
 
 
     
@@ -346,5 +393,5 @@ def main():
 
                   
         pygame.display.update()
-             
+
 main() 
