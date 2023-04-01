@@ -105,13 +105,9 @@ class player:
 def background():
     
     WIN.fill(colors["blue"])
-    
     pygame.draw.rect(WIN, colors["white"], (0, 450, 500, 50))
-    
     pygame.draw.rect(WIN, colors["white"], (0, 0, 500, 50))
-    
     pygame.draw.rect(WIN, colors["white"], (0, 0, 0, 500))
-    
     pygame.draw.rect(WIN, colors["white"], (495, 0, 0, 500))
     
     lineY = 0
@@ -198,9 +194,6 @@ def level1():
 
                               """
 
-
-    
-
 # Create an instance of the player
 play = player(25, 475)
 # main function, where the game runs
@@ -222,4 +215,6 @@ def main():
         level1()
         pygame.display.update()
         
-main()
+        
+main() 
+# hey dan did it work my guy ?
