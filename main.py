@@ -255,7 +255,7 @@ level 2
 level 3 
 """
 def level3():
-    global play, previous_positions, level
+    global play, previous_positions, level, lives
     
     # Define the coordinates of each tile in the path
     path_coords = [(25, 75), (25, 125), (75, 125), (125, 125), (175, 125),(175, 175),
@@ -298,7 +298,7 @@ level 4
 
 
 def level4():
-    global play, previous_positions, level
+    global play, previous_positions, level, lives
     
     # Define the coordinates of each tile in the path
     path_coords = [(475, 375), (475, 325), (475, 275), (475, 275), 
