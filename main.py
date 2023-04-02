@@ -1,3 +1,4 @@
+
 import pygame
 import sys
 import random as r
@@ -252,6 +253,8 @@ path7 = [(275, 75), (275, 125), (225, 125), (175, 125),
 (425, 425), (475, 425), (475, 375), (475, 325), (475, 275), 
 (475, 225), (475, 175), (425, 175), (425, 125), (425, 75)]
 
+previous_positions = []
+
 """
             ^
             |
@@ -371,6 +374,13 @@ def main():
             Level(path6)
         elif level == 7:
             Level(path7)
+
+
+
+        elif level == 4:
+            Level(path4)
+        elif level == 5:
+            Level(path5)
 
 
 
