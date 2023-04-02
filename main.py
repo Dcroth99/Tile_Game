@@ -131,7 +131,7 @@ class player:
         if keys[pygame.K_s] and self.y < 500 - self.height:
             time.sleep(0.2)
             self.y += self.vel
-
+            
 
 
 """
@@ -228,7 +228,31 @@ path3 = [(25, 75), (25, 125), (75, 125), (125, 125), (175, 125),(175, 175),
      (325, 325), (375, 325), (425, 325), (425, 375), (475, 375)]
 
 
-previous_positions = []
+path4 = [(475, 375), (475, 325), (425, 325), (375, 325), (375, 375), (325, 375), 
+         (275, 375), (275, 325), (275, 275), (275, 225), (325, 225), (325, 175), (325, 125), 
+         (275, 125), (225, 125), (225, 75), (175, 75), (125, 75), (75,75), (75, 125), 
+         (75, 175), (75, 225), (25, 225)]
+
+path5 = [(475, 75), (425, 75), (375, 75), (375, 125), (325, 125), (325, 175), (325, 225), 
+         (375, 225), (425, 225),(425, 275), (425, 325), (375, 325), (325, 325), (275, 325),
+         (275, 375), (225, 375), (175, 375), (175, 325), (175, 275), (175, 225), (125, 225), 
+         (75, 225), (75, 275), (25, 275), (25, 325), (25, 375), (75, 375), (75, 425)]
+
+path6 = [(75, 425), (75, 375), (125, 375), (125, 325), (125, 275), 
+(125, 225), (125, 175), (125, 125), (175, 125), (225, 125), (225, 175), 
+(225, 225), (225, 275), (225, 325), (225, 375), (275, 375), (325, 375), (325, 325),
+ (325, 275), (325, 225), (325, 175), (325, 125), (375, 125), (425, 125), (425, 175), (425, 225), (425, 275), 
+(425, 325), (425, 375), (475, 375)]
+
+path7 = [(275, 75), (275, 125), (225, 125), (175, 125), 
+(125, 125), (75, 125), (75, 175), (75, 225), (125, 225), 
+(125, 275), (125, 325), (175, 325), (225, 325), (225, 275), 
+(225, 225), (275, 225), (325, 225), (375, 225), (375, 275), 
+(375, 325), (325, 325), (325, 375), (325, 425), (375, 425), 
+(425, 425), (475, 425), (475, 375), (475, 325), (475, 275), 
+(475, 225), (475, 175), (425, 175), (425, 125), (425, 75)]
+
+]
 """
             ^
             |
@@ -241,7 +265,9 @@ Level function
     v
 """
 def Level(path_coords):
-    global play, previous_positions, level, lives, clicks, remaining_clicks, path1, path2, path3, path4
+
+    global play, previous_positions, level, lives, clicks, remaining_clicks, path1, path2, path3, path4, path5
+
 
     # Check if the player is on a tile in the path
     current_pos = (play.x, play.y)
@@ -284,7 +310,7 @@ def Level(path_coords):
         # Player completed the level
         level += 1
         lives += 1
-        remaining_clicks = 10
+        remaining_clicks = 15
         previous_positions = []
 
     if current_pos == path_coords[-1]:
@@ -308,10 +334,12 @@ clicks = 0
 white_tiles = []
 lives = 10
 level = 1
-remaining_clicks = 10  
+remaining_clicks = 15  
 # Create an instance of the player
 play = player(25, 475)
+
 Enemy1 = Enemy(25, 175)
+
 
 def main():
     global lives, level, path_coords, clicks, remaining_clicks
@@ -336,6 +364,12 @@ def main():
             Level(path2)
         elif level == 3:
             Level(path3)
+        elif level == 4:
+            Level(path4)
+        elif level == 5:
+            Level(path5)
+
+
 
         
         
@@ -348,5 +382,6 @@ def main():
         WIN.blit(clicks_text, (10, 30))
 
         pygame.display.update()
+
 
 main() 
