@@ -6,7 +6,7 @@ import math
 from pygame.locals import *
 import time 
 
-# Define the window for Game to be played in
+# Define the window for the game
 WIN = pygame.display.set_mode((500, 500))
 pygame.init()
 font = pygame.font.SysFont("Ariel", 30)
@@ -35,7 +35,7 @@ font = pygame.font.SysFont("Ariel", 30)
         v
 """
 
-# Define the colors to be used in the game
+# Define the colors 
 colors = {
     "black": (0, 0, 0),
     "white": (255, 255, 255),
@@ -110,7 +110,7 @@ class player:
                 self.eyes_open = True
                 self.last_blink_time = current_time
 
-        # draw the eyes based on their current state
+        # draw the eyes 
         eye_color = colors["white"] if self.eyes_open else colors["black"]
         pygame.draw.rect(WIN, eye_color, (self.x-12, self.y-10, 8, 8))
         pygame.draw.rect(WIN, eye_color, (self.x+5, self.y-10, 8, 8))
@@ -230,7 +230,7 @@ def background():
         v
        
  """
-path1 = [(25, 425), (75, 425), (125, 425),(125, 375), (125, 325),
+ path1 = [(25, 425), (75, 425), (125, 425),(125, 375), (125, 325),
      (175, 325), (175, 275), (175, 225), (225, 225), (275, 225), (325, 225), 
      (375, 225), (375, 175), (375, 125), (425, 125), (475, 125), (475, 75)]
 
@@ -265,8 +265,7 @@ path7 = [(475, 75), (425, 75), (375, 75), (375, 125), (325, 125), (325, 175), (3
          (375, 225), (425, 225),(425, 275), (425, 325), (375, 325), (325, 325), (275, 325),
          (275, 375), (225, 375), (175, 375), (175, 325), (175, 275), (175, 225), (125, 225), 
          (75, 225), (75, 275), (25, 275), (25, 325), (25, 375), (75, 375), (75, 425)] 
-
-
+         
 previous_positions = []
 
 
@@ -315,8 +314,7 @@ def Level(path_coords):
         if pygame.mouse.get_pressed()[0]:
             clicks += 1
             remaining_clicks -= 1
-            time.sleep(0.18)
-            print("Clicks:", clicks)
+            time.sleep(0.12)
             for pos in path_coords:
                 if abs(pos[0] - pygame.mouse.get_pos()[0]) <= 30 and abs(pos[1] - pygame.mouse.get_pos()[1]) <= 30:
                     pygame.draw.rect(WIN, colors["white"], (pos[0]-25, pos[1]-25, 50, 50))
@@ -350,6 +348,8 @@ Main function
      |
      v
 """
+
+
 
 clicks = 0
 white_tiles = []
