@@ -1,4 +1,3 @@
-
 import pygame
 import sys
 import random as r
@@ -11,8 +10,6 @@ WIN = pygame.display.set_mode((500, 500))
 pygame.init()
 font = pygame.font.SysFont("Ariel", 30)
 """
-
-
                 ^
                 |
                 |
@@ -135,9 +132,9 @@ class player:
             time.sleep(0.2)
             self.y += self.vel
 
+
+
 """
-
-
                 ^
                 |
                 |
@@ -152,14 +149,39 @@ class player:
                 |
                 |
                 v
-
-
-
                               """
+
+
+class Enemy(object):
+    global player
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.vel = 2
+        self.hitbox = (self.x, self.y, 30, 30)
+        self.health = 10
+        self.visible = True
+    
+    def draw(self):
+        if self.visible:
+            self.hitbox = (self.x, self.y, 30, 30)
+            pygame.draw.circle(WIN, colors["red"], (self.x, self.y), 20)
+
+    def move(self):
+        self.x += self.vel
+        if self.x > 500:
+            self.x = 0
+    
+    
+    
+        
+
+        
 
 
 
 # Define the Background
+
 def background():
     
     WIN.fill(colors["blue"])
@@ -183,17 +205,12 @@ def background():
                ^
                |
                |
-
        Background
-
-
-
        Paths 
         
         |
         |
         v
-
        
  """
 path1 = [(25, 425), (75, 425), (125, 425),(125, 375), (125, 325),
@@ -213,19 +230,10 @@ path3 = [(25, 75), (25, 125), (75, 125), (125, 125), (175, 125),(175, 175),
 
 previous_positions = []
 """
-
             ^
             |
             |
-
  Paths for the player to follow
-
-
-
-
-
-
-
 Level function
     
     |
@@ -288,24 +296,12 @@ def Level(path_coords):
      ^
      |
      |
-
 Level function
-
-
-
-
-
-
-
 Main function
    
      |
      |
      v
-
-
-
-
 """
 
 clicks = 0
@@ -315,6 +311,7 @@ level = 1
 remaining_clicks = 10  
 # Create an instance of the player
 play = player(25, 475)
+Enemy1 = Enemy(25, 175)
 
 def main():
     global lives, level, path_coords, clicks, remaining_clicks
@@ -339,6 +336,7 @@ def main():
             Level(path2)
         elif level == 3:
             Level(path3)
+
         
         
 
@@ -351,5 +349,5 @@ def main():
 
         pygame.display.update()
 
-main() 
 
+main() 
