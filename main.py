@@ -94,15 +94,6 @@ class player:
         pygame.draw.circle(WIN, colors["black"], (self.x-7.25, self.y-6), 3)
         pygame.draw.circle(WIN, colors["black"], (self.x+9, self.y-6), 3)
 
-
-
-
-            
-                
-                
-        
-
-
     
     def movement(self):
         keys = pygame.key.get_pressed()
@@ -120,6 +111,8 @@ class player:
             self.y += self.vel
 
 """
+
+
                 ^
                 |
                 |
@@ -130,6 +123,9 @@ class player:
                 |
                 |
                 v
+
+
+
                               """
 
 
@@ -154,7 +150,6 @@ def background():
         lineX = lineX + 50
         pygame.draw.rect(WIN, colors["black"], (0, lineX, 500, 2))
 
-
 """
                ^
                |
@@ -167,231 +162,123 @@ def background():
                 |
                 v
                               """
-
-
-# Define Level 1
-previous_positions = []
-def level1():
-    global play, previous_positions, level, lives 
-    
-    # Define the coordinates of each tile in the path
-    path_coords = [(25, 425), (75, 425), (125, 425),(125, 375), (125, 325),
+path1 = [(25, 425), (75, 425), (125, 425),(125, 375), (125, 325),
      (175, 325), (175, 275), (175, 225), (225, 225), (275, 225), (325, 225), 
      (375, 225), (375, 175), (375, 125), (425, 125), (475, 125), (475, 75)]
-    # Check if the player is on a tile in the path
-    current_pos = (play.x, play.y)
-    if current_pos in path_coords:
 
-        if current_pos not in previous_positions:
-            previous_positions.append(current_pos)
-
-        pygame.draw.rect(WIN, colors["white"], (play.x-25, play.y-25, 50, 50))
-
-    else:
-        play.x, play.y = path_coords[0]
-        previous_positions = [path_coords[0]]
-        
-    for pos in previous_positions:
-        if pos in path_coords:
-            pygame.draw.rect(WIN, colors["white"], (pos[0]-25, pos[1]-25, 50, 50))
-
-    
-
-    
-
-    play.draw()
-    play.movement()
-
-    if current_pos == path_coords[-1]:
-        play.x, play.y = path_coords[0]
-        level = 2
-        previous_positions = []
-"""
-level 1
-
-
-level 2
-
-"""
-
-def level2():
-    global play, previous_positions, level, lives
-    
-    # Define the coordinates of each tile in the path
-    path_coords = [(25, 425), (25, 375), (25, 325),
+path2 = [(25, 425), (25, 375), (25, 325),
                    (75, 325), (75, 275), (125, 275), (125, 225),
                    (175, 225), (225, 225), (275, 225), (325, 225),
                    (325, 275), (325, 325), (375, 325), (425, 325),
                    (425, 275), (425, 225), (425, 175), (425, 125), (425, 75)]
-    # Check if the player is on a tile in the path
-    current_pos = (play.x, play.y)
-    if current_pos in path_coords:
 
-        if current_pos not in previous_positions:
-            previous_positions.append(current_pos)
-
-        pygame.draw.rect(WIN, colors["white"], (play.x-25, play.y-25, 50, 50))
-
-    else:
-        lives = lives - 1
-        play.x, play.y = path_coords[0]
-        previous_positions = [path_coords[0]]
-        
-    for pos in previous_positions:
-        if pos in path_coords:
-            pygame.draw.rect(WIN, colors["white"], (pos[0]-25, pos[1]-25, 50, 50))
-
-
-
-    play.draw()
-    play.movement()
-
-    if current_pos == path_coords[-1]:
-        level = 3
-        previous_positions = []
-"""
-level 2
-
-level 3 
-"""
-def level3():
-    global play, previous_positions, level, lives
-    
-    # Define the coordinates of each tile in the path
-    path_coords = [(25, 75), (25, 125), (75, 125), (125, 125), (175, 125),(175, 175),
+path3 = [(25, 75), (25, 125), (75, 125), (125, 125), (175, 125),(175, 175),
      (175, 225), (225, 225), (275, 225), (325, 225), (325, 275), 
      (325, 325), (375, 325), (425, 325), (425, 375), (475, 375)]
-    # Check if the player is on a tile in the path
-    current_pos = (play.x, play.y)
-    if current_pos in path_coords:
 
-        if current_pos not in previous_positions:
-            previous_positions.append(current_pos)
-
-        pygame.draw.rect(WIN, colors["white"], (play.x-25, play.y-25, 50, 50))
-
-    else:
-        lives = lives - 1
-        play.x, play.y = path_coords[0]
-        previous_positions = [path_coords[0]]
-        
-    for pos in previous_positions:
-        if pos in path_coords:
-            pygame.draw.rect(WIN, colors["white"], (pos[0]-25, pos[1]-25, 50, 50))
-
-
-
-    play.draw()
-    play.movement()
-
-    if current_pos == path_coords[-1]:
-        level = 4
-        previous_positions = []
-
-
-"""
-level 3
-
-
-level 4 
-"""
-
-
-def level4():
-    global play, previous_positions, level, lives
-    
-    # Define the coordinates of each tile in the path
-    path_coords = [(475, 375), (475, 325), (475, 275), (475, 275), 
+path4 = [(475, 375), (475, 325), (475, 275), (475, 275), 
     (375, 275), (325, 275), (325, 325), (325, 375), (275, 375), 
     (225, 375), (175, 375), (175, 325), (175, 275), (175, 225), 
     (175, 175), (225, 175), (275, 175), (325, 175), (375, 175), 
     (425, 175), (475, 175)]
+previous_positions = []
+def Level(path_coords):
+    global play, previous_positions, level, lives, clicks, remaining_clicks, path1, path2, path3, path4
+
+    # Check if the player is on a tile in the path
     current_pos = (play.x, play.y)
     if current_pos in path_coords:
-
         if current_pos not in previous_positions:
             previous_positions.append(current_pos)
-
         pygame.draw.rect(WIN, colors["white"], (play.x-25, play.y-25, 50, 50))
-
     else:
-        lives = lives - 1
+        lives -= 1  # decrease lives by 1
+        if lives <= 0:
+            print("Game Over")
+            pygame.quit()
+            sys.exit()
         play.x, play.y = path_coords[0]
         previous_positions = [path_coords[0]]
-        
+
     for pos in previous_positions:
         if pos in path_coords:
             pygame.draw.rect(WIN, colors["white"], (pos[0]-25, pos[1]-25, 50, 50))
 
-
-
     play.draw()
     play.movement()
 
+    # Check for mouse click and remaining clicks
+    if remaining_clicks > 0:
+        if pygame.mouse.get_pressed()[0]:
+            clicks += 1
+            remaining_clicks -= 1
+            print("Clicks:", clicks)
+            for pos in path_coords:
+                if abs(pos[0] - pygame.mouse.get_pos()[0]) <= 30 and abs(pos[1] - pygame.mouse.get_pos()[1]) <= 30:
+                    pygame.draw.rect(WIN, colors["white"], (pos[0]-25, pos[1]-25, 50, 50))
+                    remaining_clicks = 5
+                    break
+    else:
+        # No remaining clicks, keep playing the current level
+        pass
+    
     if current_pos == path_coords[-1]:
-        level = 5
+        # Player completed the level
+        level += 1
+        lives += 1
+        remaining_clicks = 5
         previous_positions = []
 
-
-"""
-
-
-level4
-
+    if current_pos == path_coords[-1]:
+        # Player completed the level but ran out of clicks
+        previous_positions = []
+        print("Out of clicks! Try again.")
 
 
-
-
-
-
-main function
-
-
-"""
+# main function
+clicks = 0
+white_tiles = []
 lives = 10
 level = 1
+remaining_clicks = 5  # Set remaining clicks to 5
 # Create an instance of the player
 play = player(25, 475)
-# main function, where the game runs
+
 def main():
-    global lives, level
+    global lives, level, path_coords, clicks, remaining_clicks
     run = True
     clock = pygame.time.Clock()
     FPS = 60
-    
+
     while run:
         clock.tick(FPS)
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                run = False        
+                run = False
                 pygame.quit()
                 sys.exit()
 
-            
         background()
         if level == 1:
             lives = 10
-            level1()
-        if level == 2:
-            level2()
-        if level == 3:
-            level3()
-        if level == 4:
-            level4()
-       
-       
-       
-       # to reset the lives
-        elif lives == 0:
-            level = 1
+            Level(path1)
+        elif level == 2:
+            Level(path2)
+        elif level == 3:
+            Level(path3)
+        elif level == 4:
+            Level(path4)
 
+
+        # Draw text
         lives_text = font.render("Lives: " + str(lives), 1, (0,0,0))
         WIN.blit(lives_text, (10, 10))
-        
+        # Draw clicks remaining until next level
+        clicks_text = font.render("Clicks: " + str(remaining_clicks), 1, (0,0,0))
+        WIN.blit(clicks_text, (10, 30))
 
-
-
-                  
         pygame.display.update()
 
-main() 
+
+main()
