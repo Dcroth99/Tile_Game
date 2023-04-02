@@ -269,7 +269,6 @@ path7 = [(475, 75), (425, 75), (375, 75), (375, 125), (325, 125), (325, 175), (3
 
 previous_positions = []
 
-previous_positions = []
 
 """
             ^
@@ -314,31 +313,29 @@ def Level(path_coords):
     # Check for mouse click and remaining clicks
     if remaining_clicks > 0:
         if pygame.mouse.get_pressed()[0]:
-            time.sleep(0.05)
             clicks += 1
             remaining_clicks -= 1
-            time.sleep(0.1)
+            time.sleep(0.18)
             print("Clicks:", clicks)
             for pos in path_coords:
                 if abs(pos[0] - pygame.mouse.get_pos()[0]) <= 30 and abs(pos[1] - pygame.mouse.get_pos()[1]) <= 30:
                     pygame.draw.rect(WIN, colors["white"], (pos[0]-25, pos[1]-25, 50, 50))
                     remaining_clicks = remaining_clicks + 1
                     break
+
     else:
         # No remaining clicks, keep playing the current level
         pass
-    
+    #If player reaches the end of the path, increase level by 1
     if current_pos == path_coords[-1]:
-        # Player completed the level
         level += 1
         lives += 1
         remaining_clicks = 15
         previous_positions = []
 
     if current_pos == path_coords[-1]:
-        # Player completed the level but ran out of clicks
         previous_positions = []
-        print("Out of clicks! Try again.")
+        
 
 """
      ^
