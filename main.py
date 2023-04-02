@@ -11,6 +11,25 @@ WIN = pygame.display.set_mode((500, 500))
 pygame.init()
 font = pygame.font.SysFont("Ariel", 30)
 """
+
+
+                ^
+                |
+                |
+    
+    Window Setup and Package Imports
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     Colors
     
         | 
@@ -39,6 +58,11 @@ colors = {
         |
         |
      Colors
+    
+    
+    
+    
+    
     Player Class
         |
         |
@@ -54,6 +78,7 @@ class player:
         self.vel = 50
         self.eyes_open = True  
         self.last_blink_time = 0
+        self.hitbox = (self.x, self.y, 30, 30)
 
 
     def draw(self):
@@ -118,6 +143,10 @@ class player:
                 |
                 
             Player Class 
+            
+            
+            
+            
             Background
        
                 |
@@ -154,7 +183,17 @@ def background():
                ^
                |
                |
+
        Background
+
+
+
+       Paths 
+        
+        |
+        |
+        v
+
        
  """
 path1 = [(25, 425), (75, 425), (125, 425),(125, 375), (125, 325),
@@ -178,6 +217,26 @@ path4 = [(475, 375), (475, 325), (475, 275), (475, 275),
     (175, 175), (225, 175), (275, 175), (325, 175), (375, 175), 
     (425, 175), (475, 175)]
 previous_positions = []
+"""
+
+            ^
+            |
+            |
+
+ Paths for the player to follow
+
+
+
+
+
+
+
+Level function
+    
+    |
+    |
+    v
+"""
 def Level(path_coords):
     global play, previous_positions, level, lives, clicks, remaining_clicks, path1, path2, path3, path4
 
@@ -212,7 +271,7 @@ def Level(path_coords):
             for pos in path_coords:
                 if abs(pos[0] - pygame.mouse.get_pos()[0]) <= 30 and abs(pos[1] - pygame.mouse.get_pos()[1]) <= 30:
                     pygame.draw.rect(WIN, colors["white"], (pos[0]-25, pos[1]-25, 50, 50))
-                    remaining_clicks = 5
+                    remaining_clicks = remaining_clicks + 1
                     break
     else:
         # No remaining clicks, keep playing the current level
@@ -222,7 +281,7 @@ def Level(path_coords):
         # Player completed the level
         level += 1
         lives += 1
-        remaining_clicks = 5
+        remaining_clicks = 10
         previous_positions = []
 
     if current_pos == path_coords[-1]:
@@ -230,13 +289,35 @@ def Level(path_coords):
         previous_positions = []
         print("Out of clicks! Try again.")
 
+"""
+     ^
+     |
+     |
 
-# main function
+Level function
+
+
+
+
+
+
+
+Main function
+   
+     |
+     |
+     v
+
+
+
+
+"""
+
 clicks = 0
 white_tiles = []
 lives = 10
 level = 1
-remaining_clicks = 5  # Set remaining clicks to 5
+remaining_clicks = 10  
 # Create an instance of the player
 play = player(25, 475)
 
