@@ -309,11 +309,9 @@ Main function
 
 
 
-     
+
 """
 
-
-# main function
 clicks = 0
 white_tiles = []
 lives = 10
