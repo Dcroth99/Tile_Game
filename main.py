@@ -252,7 +252,6 @@ path7 = [(275, 75), (275, 125), (225, 125), (175, 125),
 (425, 425), (475, 425), (475, 375), (475, 325), (475, 275), 
 (475, 225), (475, 175), (425, 175), (425, 125), (425, 75)]
 
-]
 """
             ^
             |
@@ -330,11 +329,11 @@ Main function
      v
 """
 
-clicks=0
-white_tiles=[]
-lives=10
-level=1
-remaining_clicks=15  
+clicks = 0
+white_tiles = []
+lives = 10
+level = 1
+remaining_clicks = 15  
 # Create an instance of the player
 play = player(25, 475)
 
@@ -368,6 +367,10 @@ def main():
             Level(path4)
         elif level == 5:
             Level(path5)
+        elif level == 6:
+            Level(path6)
+        elif level == 7:
+            Level(path7)
 
 
 
