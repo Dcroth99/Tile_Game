@@ -315,8 +315,7 @@ def Level(path_coords):
         if pygame.mouse.get_pressed()[0]:
             clicks += 1
             remaining_clicks -= 1
-            time.sleep(0.18)
-            print("Clicks:", clicks)
+            time.sleep(0.1)
             for pos in path_coords:
                 if abs(pos[0] - pygame.mouse.get_pos()[0]) <= 30 and abs(pos[1] - pygame.mouse.get_pos()[1]) <= 30:
                     pygame.draw.rect(WIN, colors["white"], (pos[0]-25, pos[1]-25, 50, 50))
