@@ -330,11 +330,11 @@ Main function
      v
 """
 
-clicks = 0
-white_tiles = []
-lives = 10
-level = 1
-remaining_clicks = 15  
+clicks=0
+white_tiles=[]
+lives=10
+level=1
+remaining_clicks=15  
 # Create an instance of the player
 play = player(25, 475)
 
