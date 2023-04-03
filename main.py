@@ -125,6 +125,7 @@ class player:
 
 
 """
+
                 ^
                 |
                 |
@@ -134,7 +135,9 @@ class player:
             
             
             Enemy Class
+            
             Background
+
        
                 |
                 |
@@ -208,10 +211,12 @@ def background():
         pygame.draw.rect(WIN, colors["gray"], (0, lineX, 500, 2))
 
 """
+
                ^
                |
                |
        Background
+
        
        Paths 
         
@@ -289,20 +294,20 @@ previous_positions = []
 
 
 """
+
             ^
             |
             |
  Paths for the player to follow
+
  
     Level function
     
         |
         |
         v
-    |
-    |
-    v
-    
+
+   
 """
 
 def Level(path_coords):
@@ -363,11 +368,13 @@ def Level(path_coords):
          |
          |
     Level function
+
     Main function
          |
          |
          v
 """
+
 
 
 
@@ -434,4 +441,6 @@ def main():
         pygame.display.update()
 
 
+
 main()
+
