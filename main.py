@@ -34,10 +34,10 @@ colors = {
     "yellow": (255, 255, 0),
     "green": (0, 255, 0),
     "green1": (0, 190, 0),
-    "blue": (0, 0, 220),
+    "blue": (0, 90, 220),
     "purple": (255, 51, 255),
     "pink": (0, 0, 0),
-    "gray": (162, 162, 162),
+    "gray": (180, 180, 180),
 
 }
 
@@ -52,6 +52,8 @@ colors = {
         |
         |
         v
+
+
 """
 # Define the player  
 class player:
@@ -133,7 +135,7 @@ class player:
             
             
             Enemy Class
-
+            
             Background
 
        
@@ -184,10 +186,10 @@ class Enemy(object):
 def background():
     
     WIN.fill(colors["blue"])
-    pygame.draw.rect(WIN, colors["white"], (0, 450, 500, 50))
-    pygame.draw.rect(WIN, colors["white"], (0, 0, 500, 50))
-    pygame.draw.rect(WIN, colors["white"], (0, 0, 0, 500))
-    pygame.draw.rect(WIN, colors["white"], (495, 0, 0, 500))
+    pygame.draw.rect(WIN, colors["gray"], (0, 450, 500, 50))
+    pygame.draw.rect(WIN, colors["gray"], (0, 0, 500, 50))
+    pygame.draw.rect(WIN, colors["gray"], (0, 0, 0, 500))
+    pygame.draw.rect(WIN, colors["gray"], (495, 0, 0, 500))
     
     lineY = 0
     lineX = 0
@@ -198,7 +200,7 @@ def background():
 
         lineY = lineY + 50
 
-        pygame.draw.rect(WIN, colors["black"], (lineY, 50, 2, 400))
+        pygame.draw.rect(WIN, colors["gray"], (lineY, 50, 2, 400))
 
     # Draw the X lines on the board
 
@@ -206,7 +208,7 @@ def background():
 
         lineX = lineX + 50
 
-        pygame.draw.rect(WIN, colors["black"], (0, lineX, 500, 2))
+        pygame.draw.rect(WIN, colors["gray"], (0, lineX, 500, 2))
 
 """
 
@@ -214,7 +216,6 @@ def background():
                |
                |
        Background
-
 
        
        Paths 
@@ -302,16 +303,11 @@ previous_positions = []
  
     Level function
     
-
         |
         |
         v
 
-    |
-    |
-    v
-    
-
+   
 """
 
 def Level(path_coords):
@@ -324,7 +320,7 @@ def Level(path_coords):
     if current_pos in path_coords:
         if current_pos not in previous_positions:
             previous_positions.append(current_pos)
-        pygame.draw.rect(WIN, colors["white"], (play.x-25, play.y-25, 50, 50))
+        pygame.draw.rect(WIN, colors["gray"], (play.x-25, play.y-25, 50, 50))
     else:
         lives -= 1  # decrease lives by 1
         if lives <= 0:
@@ -336,7 +332,7 @@ def Level(path_coords):
 
     for pos in previous_positions:
         if pos in path_coords:
-            pygame.draw.rect(WIN, colors["white"], (pos[0]-25, pos[1]-25, 50, 50))
+            pygame.draw.rect(WIN, colors["gray"], (pos[0]-25, pos[1]-25, 50, 50))
 
     play.draw()
     play.movement()
@@ -349,7 +345,7 @@ def Level(path_coords):
             time.sleep(0.12)
             for pos in path_coords:
                 if abs(pos[0] - pygame.mouse.get_pos()[0]) <= 30 and abs(pos[1] - pygame.mouse.get_pos()[1]) <= 30:
-                    pygame.draw.rect(WIN, colors["white"], (pos[0]-25, pos[1]-25, 50, 50))
+                    pygame.draw.rect(WIN, colors["gray"], (pos[0]-25, pos[1]-25, 50, 50))
                     remaining_clicks = remaining_clicks + 1
                     break
 
@@ -373,7 +369,6 @@ def Level(path_coords):
          |
     Level function
 
-
     Main function
          |
          |
@@ -382,9 +377,10 @@ def Level(path_coords):
 
 
 
+
 clicks = 0
 white_tiles = []
-lives = 10
+lives = 100
 level = 1
 remaining_clicks = 15  
 # Create an instance of the player
@@ -410,7 +406,7 @@ def main():
 
         background()
         if level == 1:
-            lives = 10
+            lives = 100
             Level(path1)
         elif level == 2:
             Level(path2)
@@ -435,12 +431,16 @@ def main():
 
         # Draw text
         lives_text = font.render("Lives: " + str(lives), 1, (0,0,0))
-        WIN.blit(lives_text, (10, 10))
+        WIN.blit(lives_text, (10, 15))
+        levels_text = font.render("Level: " + str(level), 1, (0,0,0))
+        WIN.blit(levels_text, (390, 15))
         # Draw clicks remaining until next level
         clicks_text = font.render("Clicks: " + str(remaining_clicks), 1, (0,0,0))
-        WIN.blit(clicks_text, (10, 30))
+        WIN.blit(clicks_text, (190, 15))
 
         pygame.display.update()
 
 
+
 main()
+
