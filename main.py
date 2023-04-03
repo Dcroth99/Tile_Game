@@ -6,7 +6,7 @@ import math
 from pygame.locals import *
 import time 
 
-# Define the window for Game to be played in
+# Define the window for the game
 WIN = pygame.display.set_mode((500, 500))
 pygame.init()
 font = pygame.font.SysFont("Ariel", 30)
@@ -20,14 +20,6 @@ font = pygame.font.SysFont("Ariel", 30)
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
     Colors
     
         | 
@@ -35,7 +27,7 @@ font = pygame.font.SysFont("Ariel", 30)
         v
 """
 
-# Define the colors to be used in the game
+# Define the colors 
 colors = {
     "black": (0, 0, 0),
     "white": (255, 255, 255),
@@ -110,7 +102,7 @@ class player:
                 self.eyes_open = True
                 self.last_blink_time = current_time
 
-        # draw the eyes based on their current state
+        # draw the eyes 
         eye_color = colors["white"] if self.eyes_open else colors["black"]
         pygame.draw.rect(WIN, eye_color, (self.x-12, self.y-10, 8, 8))
         pygame.draw.rect(WIN, eye_color, (self.x+5, self.y-10, 8, 8))
@@ -145,7 +137,7 @@ class player:
             
             
             
-            Background
+            Enemy Class
        
                 |
                 |
@@ -176,7 +168,6 @@ class Enemy(object):
          ^
          |
          |
-
     Enemy Class
     
     
@@ -223,6 +214,7 @@ def background():
        Background
 
 
+       
        Paths 
         
         |
@@ -264,9 +256,29 @@ path6 = [(475, 375), (475, 325), (425, 325), (375, 325), (375, 375), (325, 375),
 path7 = [(475, 75), (425, 75), (375, 75), (375, 125), (325, 125), (325, 175), (325, 225), 
          (375, 225), (425, 225),(425, 275), (425, 325), (375, 325), (325, 325), (275, 325),
          (275, 375), (225, 375), (175, 375), (175, 325), (175, 275), (175, 225), (125, 225), 
-         (75, 225), (75, 275), (25, 275), (25, 325), (25, 375), (75, 375), (75, 425)] 
+         (75, 225), (75, 275), (25, 275)]
 
+path8 = [(25, 275), (75, 275), (125, 275), (125, 225), (125, 175), (75, 175), (25, 175),
+         (25, 125), (25, 75), (75, 75), (125, 75), (175, 75), (175, 125), (225, 125), (225, 175), (275, 175),
+         (325, 175), (325, 225), (325, 275), (275, 275), (275, 325), (225, 325), (225, 375),
+         (225, 425), (275, 425), (325, 425), (375, 425), (375, 375), (425, 375), (425, 325),
+         (425, 275), (475, 275)]
 
+path9 = [(475, 175), (425, 175),
+         (425, 125), (375, 125), (325, 125), (325, 175), (325, 225),
+         (375, 225), (375, 275), (425, 275), (425, 325), (425, 375), (375, 375), (325, 375),
+         (275, 375), (225, 375), (225, 325), (225, 275), (175, 275), (175, 225), (175, 175),
+         (225, 175), (225, 125), (225, 75), (175, 75), (125, 75), (125, 125), (75, 125), (75, 175),
+         (75, 225), (75, 275), (25, 275), (25, 325), (25, 375), (75, 375), (75, 425)]
+
+path10 = [(75, 425), (75, 375),
+           
+          (125, 375), (175, 375), (225, 375), (225, 325), (225, 275), (275, 275), #dead end
+
+          (25, 375), (25, 325), (25, 275), (75, 275), (75, 225), (125, 225),
+          (175, 225), (175, 175), (225, 175), (275, 175), (325, 175), (325, 125), (325, 75)]
+
+         
 previous_positions = []
 
 
@@ -276,13 +288,14 @@ previous_positions = []
             |
  Paths for the player to follow
 
-
-Level function
+ 
+    Level function
     
-    |
-    |
-    v
+        |
+        |
+        v
 """
+
 def Level(path_coords):
 
     global play, previous_positions, level, lives, clicks, remaining_clicks, path1, path2, path3, path4, path5
@@ -315,8 +328,7 @@ def Level(path_coords):
         if pygame.mouse.get_pressed()[0]:
             clicks += 1
             remaining_clicks -= 1
-            time.sleep(0.18)
-            print("Clicks:", clicks)
+            time.sleep(0.12)
             for pos in path_coords:
                 if abs(pos[0] - pygame.mouse.get_pos()[0]) <= 30 and abs(pos[1] - pygame.mouse.get_pos()[1]) <= 30:
                     pygame.draw.rect(WIN, colors["white"], (pos[0]-25, pos[1]-25, 50, 50))
@@ -338,18 +350,19 @@ def Level(path_coords):
         
 
 """
-     ^
-     |
-     |
-Level function
+         ^
+         |
+         |
+    Level function
 
 
-Main function
-   
-     |
-     |
-     v
+    Main function
+         |
+         |
+         v
 """
+
+
 
 clicks = 0
 white_tiles = []
@@ -393,6 +406,13 @@ def main():
             Level(path6)
         elif level == 7:
             Level(path7)
+        elif level == 8:
+            Level(path8)
+        elif level == 9:
+            Level(path9)
+        elif level == 10:
+            Level (path10)
+        
 
 
         # Draw text
@@ -405,4 +425,4 @@ def main():
         pygame.display.update()
 
 
-main() 
+main()
