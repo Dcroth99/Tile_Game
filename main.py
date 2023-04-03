@@ -18,13 +18,13 @@ font = pygame.font.SysFont("Ariel", 30)
     Window Setup and Package Imports
     
     
-    
-    
     Colors
     
         | 
         | 
         v
+
+
 """
 
 # Define the colors 
@@ -36,10 +36,10 @@ colors = {
     "yellow": (255, 255, 0),
     "green": (0, 255, 0),
     "green1": (0, 190, 0),
-    "blue": (0, 0, 220),
+    "blue": (0, 90, 220),
     "purple": (255, 51, 255),
     "pink": (0, 0, 0),
-    "gray": (162, 162, 162),
+    "gray": (180, 180, 180),
 
 }
 
@@ -48,9 +48,6 @@ colors = {
         |
         |
      Colors
-    
-    
-    
     
     
     Player Class
@@ -136,14 +133,13 @@ class player:
             
             
             
-            
             Enemy Class
-       
+ 
                 |
                 |
                 v
+                
                               """
-
 
 class Enemy(object):
     global player
@@ -165,6 +161,7 @@ class Enemy(object):
         if self.x > 500:
             self.x = 0
     """
+    
          ^
          |
          |
@@ -176,6 +173,7 @@ class Enemy(object):
         |
         |
         v
+        
     """
 
 # Define the Background
@@ -183,10 +181,10 @@ class Enemy(object):
 def background():
     
     WIN.fill(colors["blue"])
-    pygame.draw.rect(WIN, colors["white"], (0, 450, 500, 50))
-    pygame.draw.rect(WIN, colors["white"], (0, 0, 500, 50))
-    pygame.draw.rect(WIN, colors["white"], (0, 0, 0, 500))
-    pygame.draw.rect(WIN, colors["white"], (495, 0, 0, 500))
+    pygame.draw.rect(WIN, colors["gray"], (0, 450, 500, 50))
+    pygame.draw.rect(WIN, colors["gray"], (0, 0, 500, 50))
+    pygame.draw.rect(WIN, colors["gray"], (0, 0, 0, 500))
+    pygame.draw.rect(WIN, colors["gray"], (495, 0, 0, 500))
     
     lineY = 0
     lineX = 0
@@ -197,7 +195,7 @@ def background():
 
         lineY = lineY + 50
 
-        pygame.draw.rect(WIN, colors["black"], (lineY, 50, 2, 400))
+        pygame.draw.rect(WIN, colors["gray"], (lineY, 50, 2, 400))
 
     # Draw the X lines on the board
 
@@ -205,15 +203,13 @@ def background():
 
         lineX = lineX + 50
 
-        pygame.draw.rect(WIN, colors["black"], (0, lineX, 500, 2))
+        pygame.draw.rect(WIN, colors["gray"], (0, lineX, 500, 2))
 
 """
                ^
                |
                |
        Background
-
-
        
        Paths 
         
@@ -221,42 +217,48 @@ def background():
         |
         v
        
+       
  """
-path1 = [(25, 425), (75, 425), (125, 425),(125, 375), (125, 325),
-     (175, 325), (175, 275), (175, 225), (225, 225), (275, 225), (325, 225), 
-     (375, 225), (375, 175), (375, 125), (425, 125), (475, 125), (475, 75)]
 
-path2 = [(25, 75), (25, 125), (75, 125), (125, 125), (175, 125),(175, 175),
-     (175, 225), (225, 225), (275, 225), (325, 225), (325, 275), 
-     (325, 325), (375, 325), (425, 325), (425, 375), (475, 375)]
+path1 = [(25, 425), (75, 425), (125, 425), (125, 375), (125, 325),
+         (175, 325), (175, 275), (175, 225), (225, 225), (275, 225),
+         (325, 225), (375, 225), (375, 175), (375, 125), (425, 125),
+         (475, 125), (475, 75)]
 
-path3 = [(25, 425), (25, 375), (25, 325),
-                   (75, 325), (75, 275), (125, 275), (125, 225),
-                   (175, 225), (225, 225), (275, 225), (325, 225),
-                   (325, 275), (325, 325), (375, 325), (425, 325),
-                   (425, 275), (425, 225), (425, 175), (425, 125), (425, 75)]
+path2 = [(25, 75), (25, 125), (75, 125), (125, 125), (175, 125),
+         (175, 175), (175, 225), (225, 225), (275, 225), (325, 225),
+         (325, 275), (325, 325), (375, 325), (425, 325), (425, 375),
+         (475, 375)]
 
-path4 = [(75, 425), (75, 375), (125, 375), (125, 325), (125, 275), 
-(125, 225), (125, 175), (125, 125), (175, 125), (225, 125), (225, 175), 
-(225, 225), (225, 275), (225, 325), (225, 375), (275, 375), (325, 375), (325, 325),
- (325, 275), (325, 225), (325, 175), (325, 125), (375, 125), (425, 125), (425, 175), (425, 225), (425, 275), 
-(425, 325), (425, 375), (475, 375)]
+path3 = [(25, 425), (25, 375), (25, 325), (75, 325), (75, 275),
+         (125, 275), (125, 225), (175, 225), (225, 225), (275, 225),
+         (325, 225), (325, 275), (325, 325), (375, 325), (425, 325),
+         (425, 275), (425, 225), (425, 175), (425, 125), (425, 75)]
 
-path5 = [(375, 425), (375, 375), (425, 375), (425, 325), 
-(425, 275), (425, 225), (425, 175), (425, 125), 
-(375, 125), (325, 125), (325, 175), (325, 225), 
-(275, 225), (275, 275), (275, 325), (225, 325), (225, 375), (225, 425)]
+path4 = [(75, 425), (75, 375), (125, 375), (125, 325), (125, 275),
+         (125, 225), (125, 175), (125, 125), (175, 125), (225, 125),
+         (225, 175), (225, 225), (225, 275), (225, 325), (225, 375),
+         (275, 375), (325, 375), (325, 325), (325, 275), (325, 225),
+         (325, 175), (325, 125), (375, 125), (425, 125), (425, 175),
+         (425, 225), (425, 275), (425, 325), (425, 375), (475, 375)]
+
+path5 = [(375, 425), (375, 375), (425, 375), (425, 325), (425, 275),
+         (425, 225), (425, 175), (425, 125), (375, 125), (325, 125),
+         (325, 175), (325, 225), (275, 225), (275, 275), (275, 325),
+         (225, 325), (225, 375), (225, 425)]
 
 
-path6 = [(475, 375), (475, 325), (425, 325), (375, 325), (375, 375), (325, 375), 
-         (275, 375), (275, 325), (275, 275), (275, 225), (325, 225), (325, 175), (325, 125), 
-         (275, 125), (225, 125), (225, 75), (175, 75), (125, 75), (75,75), (75, 125), 
-         (75, 175), (75, 225), (25, 225)]
+path6 = [(475, 375), (475, 325), (425, 325), (375, 325), (375, 375), 
+         (325, 375), (275, 375), (275, 325), (275, 275), (275, 225), 
+         (325, 225), (325, 175), (325, 125), (275, 125), (225, 125), 
+         (225, 75), (175, 75), (125, 75), (75,75), (75, 125), (75, 175), 
+         (75, 225), (25, 225)]
 
-path7 = [(475, 75), (425, 75), (375, 75), (375, 125), (325, 125), (325, 175), (325, 225), 
-         (375, 225), (425, 225),(425, 275), (425, 325), (375, 325), (325, 325), (275, 325),
-         (275, 375), (225, 375), (175, 375), (175, 325), (175, 275), (175, 225), (125, 225), 
-         (75, 225), (75, 275), (25, 275)]
+path7 = [(475, 75), (425, 75), (375, 75), (375, 125), (325, 125), 
+         (325, 175), (325, 225), (375, 225), (425, 225),(425, 275),
+         (425, 325), (375, 325), (325, 325), (275, 325), (275, 375), 
+         (225, 375), (175, 375), (175, 325), (175, 275), (175, 225), 
+         (125, 225), (75, 225), (75, 275), (25, 275)] 
 
 path8 = [(25, 275), (75, 275), (125, 275), (125, 225), (125, 175), (75, 175), (25, 175),
          (25, 125), (25, 75), (75, 75), (125, 75), (175, 75), (175, 125), (225, 125), (225, 175), (275, 175),
@@ -278,6 +280,7 @@ path10 = [(75, 425), (75, 375),
           (25, 375), (25, 325), (25, 275), (75, 275), (75, 225), (125, 225),
           (175, 225), (175, 175), (225, 175), (275, 175), (325, 175), (325, 125), (325, 75)]
 
+
          
 previous_positions = []
 
@@ -287,13 +290,13 @@ previous_positions = []
             |
             |
  Paths for the player to follow
-
  
     Level function
     
         |
         |
         v
+   
 """
 
 def Level(path_coords):
@@ -306,7 +309,7 @@ def Level(path_coords):
     if current_pos in path_coords:
         if current_pos not in previous_positions:
             previous_positions.append(current_pos)
-        pygame.draw.rect(WIN, colors["white"], (play.x-25, play.y-25, 50, 50))
+        pygame.draw.rect(WIN, colors["gray"], (play.x-25, play.y-25, 50, 50))
     else:
         lives -= 1  # decrease lives by 1
         if lives <= 0:
@@ -318,7 +321,7 @@ def Level(path_coords):
 
     for pos in previous_positions:
         if pos in path_coords:
-            pygame.draw.rect(WIN, colors["white"], (pos[0]-25, pos[1]-25, 50, 50))
+            pygame.draw.rect(WIN, colors["gray"], (pos[0]-25, pos[1]-25, 50, 50))
 
     play.draw()
     play.movement()
@@ -331,7 +334,7 @@ def Level(path_coords):
             time.sleep(0.12)
             for pos in path_coords:
                 if abs(pos[0] - pygame.mouse.get_pos()[0]) <= 30 and abs(pos[1] - pygame.mouse.get_pos()[1]) <= 30:
-                    pygame.draw.rect(WIN, colors["white"], (pos[0]-25, pos[1]-25, 50, 50))
+                    pygame.draw.rect(WIN, colors["gray"], (pos[0]-25, pos[1]-25, 50, 50))
                     remaining_clicks = remaining_clicks + 1
                     break
 
@@ -355,19 +358,56 @@ def Level(path_coords):
          |
     Level function
 
-
-    Main function
+    Start & End Screen
          |
          |
          v
 """
 
+def start_screen():
+    global level
+    WIN.fill(colors["gray"])
+    font = pygame.font.SysFont("Ariel", 100)
+    subfont = pygame.font.SysFont("Ariel", 30)
+    Title = font.render("Tile Game", 1, colors["black"])
+    startit = subfont.render("Click Any Button to Start", 1, colors["black"])
+    WIN.blit(startit, (500/2 - startit.get_width()/2, 350))
+    WIN.blit(Title, (500/2 - Title.get_width()/2, 100))
+    for events in pygame.event.get():
+        if events.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+            
+        if events.type == KEYDOWN:
+            level = 1
 
+def end_screen():
+    global level
+    WIN.fill(colors["gray"])
+    Last = font.render("You Win!", 1, colors["black"])
+    WIN.blit(Last, (500/2 - Last.get_width()/2, 225))
+    for events in pygame.event.get():
+        if events.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
 
+"""
+
+         ^
+         |
+         |
+    Start & End Screen
+
+    Main function
+         |
+         |
+         v
+
+"""
 clicks = 0
 white_tiles = []
-lives = 10
-level = 1
+lives = 100
+level = 0
 remaining_clicks = 15  
 # Create an instance of the player
 play = player(25, 475)
@@ -391,8 +431,10 @@ def main():
                 sys.exit()
 
         background()
-        if level == 1:
-            lives = 10
+        if level == 0:
+            start_screen()
+        elif level == 1:
+            lives = 100
             Level(path1)
         elif level == 2:
             Level(path2)
@@ -412,17 +454,23 @@ def main():
             Level(path9)
         elif level == 10:
             Level (path10)
+        elif level == 11:
+            end_screen()
         
 
 
         # Draw text
         lives_text = font.render("Lives: " + str(lives), 1, (0,0,0))
-        WIN.blit(lives_text, (10, 10))
+        WIN.blit(lives_text, (10, 15))
+        # Draw levels
+        levels_text = font.render("Level: " + str(level), 1, (0,0,0))
+        WIN.blit(levels_text, (400, 15))
         # Draw clicks remaining until next level
         clicks_text = font.render("Clicks: " + str(remaining_clicks), 1, (0,0,0))
-        WIN.blit(clicks_text, (10, 30))
+        WIN.blit(clicks_text, (500/2 - clicks_text.get_width()/2, 15))
 
         pygame.display.update()
+
 
 
 main()
