@@ -23,6 +23,8 @@ font = pygame.font.SysFont("Ariel", 30)
         | 
         | 
         v
+
+
 """
 
 # Define the colors 
@@ -135,16 +137,18 @@ class player:
             
             
             Enemy Class
+
+ 
             
             Background
 
        
+
                 |
                 |
                 v
                 
                               """
-
 
 class Enemy(object):
     global player
@@ -265,8 +269,11 @@ path7 = [(475, 75), (425, 75), (375, 75), (375, 125), (325, 125),
          (325, 175), (325, 225), (375, 225), (425, 225),(425, 275),
          (425, 325), (375, 325), (325, 325), (275, 325), (275, 375), 
          (225, 375), (175, 375), (175, 325), (175, 275), (175, 225), 
+         (125, 225), (75, 225), (75, 275), (25, 275)] 
+
          (125, 225), (75, 225), (75, 275), (25, 275), (25, 325), 
          (25, 375), (75, 375), (75, 425)] 
+
 
 path8 = [(25, 275), (75, 275), (125, 275), (125, 225), (125, 175), (75, 175), (25, 175),
          (25, 125), (25, 75), (75, 75), (125, 75), (175, 75), (175, 125), (225, 125), (225, 175), (275, 175),
@@ -299,7 +306,6 @@ previous_positions = []
             |
             |
  Paths for the player to follow
-
  
     Level function
     
@@ -369,19 +375,61 @@ def Level(path_coords):
          |
     Level function
 
+
+    Start & End Screen
+
     Main function
+
          |
          |
          v
 """
 
+def start_screen():
+    global level
+    WIN.fill(colors["gray"])
+    font = pygame.font.SysFont("Ariel", 100)
+    subfont = pygame.font.SysFont("Ariel", 30)
+    Title = font.render("Tile Game", 1, colors["black"])
+    startit = subfont.render("Click Any Button to Start", 1, colors["black"])
+    WIN.blit(startit, (500/2 - startit.get_width()/2, 350))
+    WIN.blit(Title, (500/2 - Title.get_width()/2, 100))
+    for events in pygame.event.get():
+        if events.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+            
+        if events.type == KEYDOWN:
+            level = 1
+
+def end_screen():
+    global level
+    WIN.fill(colors["gray"])
+    Last = font.render("You Win!", 1, colors["black"])
+    WIN.blit(Last, (500/2 - Last.get_width()/2, 225))
+    for events in pygame.event.get():
+        if events.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+
+"""
 
 
+         ^
+         |
+         |
+    Start & End Screen
 
+    Main function
+         |
+         |
+         v
+
+"""
 clicks = 0
 white_tiles = []
 lives = 100
-level = 1
+level = 0
 remaining_clicks = 15  
 # Create an instance of the player
 play = player(25, 475)
@@ -405,6 +453,9 @@ def main():
                 sys.exit()
 
         background()
+        if level == 0:
+            start_screen()
+        elif level == 1:
         if level == 1:
             lives = 100
             Level(path1)
@@ -426,17 +477,26 @@ def main():
             Level(path9)
         elif level == 10:
             Level (path10)
+        elif level == 11:
+            end_screen()
         
 
 
         # Draw text
         lives_text = font.render("Lives: " + str(lives), 1, (0,0,0))
         WIN.blit(lives_text, (10, 15))
+        # Draw levels
+        levels_text = font.render("Level: " + str(level), 1, (0,0,0))
+        WIN.blit(levels_text, (400, 15))
+        # Draw clicks remaining until next level
+        clicks_text = font.render("Clicks: " + str(remaining_clicks), 1, (0,0,0))
+        WIN.blit(clicks_text, (500/2 - clicks_text.get_width()/2, 15))=
         levels_text = font.render("Level: " + str(level), 1, (0,0,0))
         WIN.blit(levels_text, (390, 15))
         # Draw clicks remaining until next level
         clicks_text = font.render("Clicks: " + str(remaining_clicks), 1, (0,0,0))
         WIN.blit(clicks_text, (190, 15))
+
 
         pygame.display.update()
 
