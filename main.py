@@ -271,9 +271,7 @@ path7 = [(475, 75), (425, 75), (375, 75), (375, 125), (325, 125),
          (225, 375), (175, 375), (175, 325), (175, 275), (175, 225), 
          (125, 225), (75, 225), (75, 275), (25, 275)] 
 
-         (125, 225), (75, 225), (75, 275), (25, 275), (25, 325), 
-         (25, 375), (75, 375), (75, 425)] 
-
+  
 
 path8 = [(25, 275), (75, 275), (125, 275), (125, 225), (125, 175), (75, 175), (25, 175),
          (25, 125), (25, 75), (75, 75), (125, 75), (175, 75), (175, 125), (225, 125), (225, 175), (275, 175),
@@ -490,7 +488,7 @@ def main():
         WIN.blit(levels_text, (400, 15))
         # Draw clicks remaining until next level
         clicks_text = font.render("Clicks: " + str(remaining_clicks), 1, (0,0,0))
-        WIN.blit(clicks_text, (500/2 - clicks_text.get_width()/2, 15))=
+        WIN.blit(clicks_text, (500/2 - clicks_text.get_width()/2, 15))
         levels_text = font.render("Level: " + str(level), 1, (0,0,0))
         WIN.blit(levels_text, (390, 15))
         # Draw clicks remaining until next level
