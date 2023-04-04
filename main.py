@@ -362,7 +362,11 @@ def Level(path_coords):
         lives += 1
         remaining_clicks = 15
         if level > 4:
-            remaining_clicks = 25
+          remaining_clicks = 25
+        if level > 9:
+          remaining_clicks = 35
+        
+          
         previous_positions = []
 
     if current_pos == path_coords[-1]:
