@@ -54,6 +54,8 @@ colors = {
         |
         |
         v
+
+
 """
 # Define the player  
 class player:
@@ -125,6 +127,7 @@ class player:
 
 
 """
+
                 ^
                 |
                 |
@@ -134,7 +137,13 @@ class player:
             
             
             Enemy Class
+
  
+            
+            Background
+
+       
+
                 |
                 |
                 v
@@ -206,10 +215,12 @@ def background():
         pygame.draw.rect(WIN, colors["gray"], (0, lineX, 500, 2))
 
 """
+
                ^
                |
                |
        Background
+
        
        Paths 
         
@@ -260,6 +271,10 @@ path7 = [(475, 75), (425, 75), (375, 75), (375, 125), (325, 125),
          (225, 375), (175, 375), (175, 325), (175, 275), (175, 225), 
          (125, 225), (75, 225), (75, 275), (25, 275)] 
 
+         (125, 225), (75, 225), (75, 275), (25, 275), (25, 325), 
+         (25, 375), (75, 375), (75, 425)] 
+
+
 path8 = [(25, 275), (75, 275), (125, 275), (125, 225), (125, 175), (75, 175), (25, 175),
          (25, 125), (25, 75), (75, 75), (125, 75), (175, 75), (175, 125), (225, 125), (225, 175), (275, 175),
          (325, 175), (325, 225), (325, 275), (275, 275), (275, 325), (225, 325), (225, 375),
@@ -286,6 +301,7 @@ previous_positions = []
 
 
 """
+
             ^
             |
             |
@@ -296,6 +312,7 @@ previous_positions = []
         |
         |
         v
+
    
 """
 
@@ -358,7 +375,11 @@ def Level(path_coords):
          |
     Level function
 
+
     Start & End Screen
+
+    Main function
+
          |
          |
          v
@@ -392,6 +413,7 @@ def end_screen():
             sys.exit()
 
 """
+
 
          ^
          |
@@ -434,6 +456,7 @@ def main():
         if level == 0:
             start_screen()
         elif level == 1:
+        if level == 1:
             lives = 100
             Level(path1)
         elif level == 2:
@@ -467,11 +490,17 @@ def main():
         WIN.blit(levels_text, (400, 15))
         # Draw clicks remaining until next level
         clicks_text = font.render("Clicks: " + str(remaining_clicks), 1, (0,0,0))
-        WIN.blit(clicks_text, (500/2 - clicks_text.get_width()/2, 15))
+        WIN.blit(clicks_text, (500/2 - clicks_text.get_width()/2, 15))=
+        levels_text = font.render("Level: " + str(level), 1, (0,0,0))
+        WIN.blit(levels_text, (390, 15))
+        # Draw clicks remaining until next level
+        clicks_text = font.render("Clicks: " + str(remaining_clicks), 1, (0,0,0))
+        WIN.blit(clicks_text, (190, 15))
+
 
         pygame.display.update()
 
 
 
 main()
-#did it go through?
+
