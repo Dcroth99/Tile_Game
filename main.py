@@ -454,7 +454,6 @@ def main():
         if level == 0:
             start_screen()
         elif level == 1:
-        if level == 1:
             lives = 100
             Level(path1)
         elif level == 2:
@@ -483,22 +482,15 @@ def main():
         # Draw text
         lives_text = font.render("Lives: " + str(lives), 1, (0,0,0))
         WIN.blit(lives_text, (10, 15))
-        # Draw levels
-        levels_text = font.render("Level: " + str(level), 1, (0,0,0))
-        WIN.blit(levels_text, (400, 15))
         # Draw clicks remaining until next level
         clicks_text = font.render("Clicks: " + str(remaining_clicks), 1, (0,0,0))
         WIN.blit(clicks_text, (500/2 - clicks_text.get_width()/2, 15))
         levels_text = font.render("Level: " + str(level), 1, (0,0,0))
         WIN.blit(levels_text, (390, 15))
-        # Draw clicks remaining until next level
-        clicks_text = font.render("Clicks: " + str(remaining_clicks), 1, (0,0,0))
-        WIN.blit(clicks_text, (190, 15))
-
+        
 
         pygame.display.update()
 
 
 
 main()
-
