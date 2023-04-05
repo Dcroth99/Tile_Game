@@ -23,8 +23,6 @@ font = pygame.font.SysFont("Ariel", 30)
         | 
         | 
         v
-
-
 """
 
 # Define the colors 
@@ -140,10 +138,6 @@ class player:
 
  
             
-            Background
-
-       
-
                 |
                 |
                 v
@@ -293,6 +287,16 @@ path10 = [(75, 425), (75, 375),
           (25, 375), (25, 325), (25, 275), (75, 275), (75, 225), (125, 225),
           (175, 225), (175, 175), (225, 175), (275, 175), (325, 175), (325, 125), (325, 75)]
 
+path11 = [(325, 75), (325, 125), (375, 125), (375, 175), (375, 225), (325, 225), (325, 275),
+          (325, 325), (375, 325), (425, 325), (425, 375), (425, 425), (375, 425), (325, 425),
+          (275, 425), (275, 375), (225, 375), (175, 375), (175, 325), (175, 275), (225, 275),
+          (225, 225), (225, 175), (175, 175), (175, 125), (125, 125), (75, 125), (75, 175),
+          (75, 225), (75, 275), (75, 325), (25, 325)]
+
+path12 = [(25, 425), (75, 425), (75, 375), (75, 325), (125,325), (175, 325), (225, 325), (225, 275),
+          (225, 225), (175, 225), (125, 225), (125, 175), (125, 125), (175, 125), (225, 125),
+          (275, 125), (325, 125), (325, 75)]
+
 
          
 previous_positions = []
@@ -362,11 +366,12 @@ def Level(path_coords):
         lives += 1
         remaining_clicks = 15
         if level > 4:
-          remaining_clicks = 25
+            remaining_clicks = 25
         if level > 9:
           remaining_clicks = 35
         
           
+
         previous_positions = []
 
     if current_pos == path_coords[-1]:
@@ -379,10 +384,8 @@ def Level(path_coords):
          |
     Level function
 
-
     Start & End Screen
 
-    Main function
 
          |
          |
@@ -418,17 +421,16 @@ def end_screen():
 
 """
 
-
          ^
          |
          |
     Start & End Screen
-
+    
+    
     Main function
          |
          |
          v
-
 """
 clicks = 0
 white_tiles = []
@@ -481,6 +483,10 @@ def main():
         elif level == 10:
             Level (path10)
         elif level == 11:
+            Level(path11)
+        elif level == 12:
+            Level(path12)
+        elif level == 13:
             end_screen()
         
 
