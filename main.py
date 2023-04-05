@@ -52,6 +52,8 @@ colors = {
         |
         |
         v
+
+
 """
 # Define the player  
 class player:
@@ -123,6 +125,7 @@ class player:
 
 
 """
+
                 ^
                 |
                 |
@@ -132,10 +135,9 @@ class player:
             
             
             Enemy Class
+
  
             
-            Background
-       
                 |
                 |
                 v
@@ -207,10 +209,12 @@ def background():
         pygame.draw.rect(WIN, colors["gray"], (0, lineX, 500, 2))
 
 """
+
                ^
                |
                |
        Background
+
        
        Paths 
         
@@ -299,6 +303,7 @@ previous_positions = []
 
 
 """
+
             ^
             |
             |
@@ -309,6 +314,7 @@ previous_positions = []
         |
         |
         v
+
    
 """
 
@@ -361,9 +367,11 @@ def Level(path_coords):
         remaining_clicks = 15
         if level > 4:
             remaining_clicks = 25
-        if level > 10:
-            remaining_clicks = 35
-            
+        if level > 9:
+          remaining_clicks = 35
+        
+          
+
         previous_positions = []
 
     if current_pos == path_coords[-1]:
@@ -375,8 +383,10 @@ def Level(path_coords):
          |
          |
     Level function
+
     Start & End Screen
-    Main function
+
+
          |
          |
          v
@@ -410,10 +420,13 @@ def end_screen():
             sys.exit()
 
 """
+
          ^
          |
          |
     Start & End Screen
+    
+    
     Main function
          |
          |
@@ -493,4 +506,3 @@ def main():
 
 
 main()
-#did it go through bro?
