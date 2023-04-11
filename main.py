@@ -420,6 +420,23 @@ def Level(path_coords):
          |
          v
 """
+def HowToPlay():
+    global level
+    WIN.fill(colors["white"])
+    font = pygame.font.SysFont("ariel", 50)
+    how_to_play = font.render("How to Play", True, colors["black"])
+    WIN.blit(how_to_play, (0, 0))
+    pygame.display.update()
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    level = 0
+                if event.key == pygame.K_SPACE:
+                    Level(path1)
 
 def start_screen():
     global level
@@ -437,6 +454,8 @@ def start_screen():
             
         if events.type == KEYDOWN:
             level = 1
+        if events.type == pygame.K_0:
+            HowToPlay()
 
 def end_screen():
     global level
