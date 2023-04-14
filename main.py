@@ -350,7 +350,7 @@ def Level(path_coords):
         if pygame.mouse.get_pressed()[0]:
             clicks += 1
             remaining_clicks -= 1
-            time.sleep(0.12)
+            time.sleep(0.05)
             for pos in path_coords:
                 if abs(pos[0] - pygame.mouse.get_pos()[0]) <= 30 and abs(pos[1] - pygame.mouse.get_pos()[1]) <= 30:
                     pygame.draw.rect(WIN, colors["gray"], (pos[0]-25, pos[1]-25, 50, 50))
@@ -364,17 +364,17 @@ def Level(path_coords):
     if current_pos == path_coords[-1]:
         level += 1
         lives += 1
-        remaining_clicks = 8
+        remaining_clicks = 200
         if level > 4:
-            remaining_clicks = 10
+            remaining_clicks = 300
         if level > 5:
-          remaining_clicks = 15
+          remaining_clicks = 400
         if level > 7:
-            remaining_clicks = 20
+            remaining_clicks = 500
         if level > 9:
-            remaining_clicks = 25
+            remaining_clicks = 600
         if level > 11:
-            remaining_clicks = 30
+            remaining_clicks = 700
         
           
 
@@ -389,7 +389,6 @@ def Level(path_coords):
          |
          |
     Level function
-
     Start & End Screen
          |
          |
@@ -446,7 +445,7 @@ clicks = 0
 white_tiles = []
 lives = 50
 level = 1
-remaining_clicks = 8
+remaining_clicks = 100
 
 # Create an instance of the player
 play = player(25, 475)
@@ -527,7 +526,7 @@ def main():
             lives_text = font.render("Lives: " + str(lives), 1, (0,0,0))
             WIN.blit(lives_text, (10, 15))
             # Draw clicks remaining until next level
-            clicks_text = font.render("Clicks: " + str(remaining_clicks), 1, (0,0,0))
+            clicks_text = font.render("Sight: " + str(remaining_clicks) + "%", 1, (0,0,0))
             WIN.blit(clicks_text, (500/2 - clicks_text.get_width()/2, 15))
             levels_text = font.render("Level: " + str(level), 1, (0,0,0))
             WIN.blit(levels_text, (390, 15))
