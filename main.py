@@ -321,7 +321,7 @@ path23 = [(475, 175), (425, 175),
          (225, 175), (225, 125), (225, 75), (175, 75), (125, 75), (125, 125), (75, 125), (75, 175),
          (75, 225), (75, 275), (25, 275), (25, 325), (25, 375), (75, 375), (75, 425)]
 
-#new level
+#add new level
 
          
 previous_positions = []
@@ -473,7 +473,7 @@ def end_screen():
 clicks = 0
 white_tiles = []
 lives = 100
-level = 20
+level = 0
 remaining_clicks = 15  
 # Create an instance of the player
 play = player(25, 475)
