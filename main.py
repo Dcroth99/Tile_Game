@@ -76,6 +76,12 @@ class player:
         pygame.draw.rect(WIN, colors["white"], (self.x+10, self.y+5, 8, 3))
         pygame.draw.circle(WIN, colors["red"], (self.x+17, self.y+6.9), 2)
         
+        
+        # draw cowboy hat
+        pygame.draw.ellipse(WIN, colors["brown"], (self.x-20, self.y-18, 40, 5))
+        pygame.draw.rect(WIN, colors["brown"], (self.x-12.5, self.y-26, 26, 10))
+        pygame.draw.rect(WIN, colors["black"], (self.x-12.5, self.y-20, 26, 4))
+        
         line_thickness = 1
         line_length = 12
         num_lines = 3
@@ -382,11 +388,17 @@ def Level(path_coords):
     if current_pos == path_coords[-1]:
         level += 1
         lives += 1
-        remaining_clicks = 15
+        remaining_clicks = 8
         if level > 4:
-            remaining_clicks = 25
+            remaining_clicks = 10
+        if level > 5:
+          remaining_clicks = 15
+        if level > 7:
+            remaining_clicks = 20
         if level > 9:
-          remaining_clicks = 35
+            remaining_clicks = 25
+        if level > 11:
+            remaining_clicks = 30
         
           
 
@@ -467,9 +479,9 @@ def end_screen():
 """
 clicks = 0
 white_tiles = []
-lives = 100
+lives = 50
 level = 0
-remaining_clicks = 15  
+remaining_clicks = 8
 # Create an instance of the player
 play = player(25, 475)
 
@@ -495,7 +507,7 @@ def main():
         if level == 0:
             start_screen()
         elif level == 1:
-            lives = 100
+            lives = 50
             Level(path1)
         elif level == 2:
             Level(path2)
