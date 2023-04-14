@@ -85,6 +85,7 @@ class player:
         pygame.draw.ellipse(WIN, colors["brown"], (self.x-20, self.y-18, 40, 5))
         pygame.draw.rect(WIN, colors["brown"], (self.x-12.5, self.y-26, 26, 10))
         pygame.draw.rect(WIN, colors["black"], (self.x-12.5, self.y-20, 26, 4))
+        pygame.draw.rect(WIN, colors["gold"], (self.x-5, self.y-20, 10, 4), 2, 2)
 
         
         line_thickness = 1
