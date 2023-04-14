@@ -466,8 +466,8 @@ def main():
                 sys.exit()
 
         background()
-         if level == 0:
-            start_screen()
+        if level == 0:
+          start_screen()
         elif level == 1:
             lives = 100
             Level(path1)
