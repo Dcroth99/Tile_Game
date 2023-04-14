@@ -442,7 +442,7 @@ clicks = 0
 white_tiles = []
 lives = 50
 level = 1
-remaining_clicks = 0
+remaining_clicks = 8
 
 # Create an instance of the player
 play = player(25, 475)
