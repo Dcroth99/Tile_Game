@@ -539,5 +539,5 @@ def main():
         pygame.display.update()
 
 
-#did it go through?
+#did it go through this time?
 main()
