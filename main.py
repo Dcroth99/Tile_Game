@@ -380,7 +380,7 @@ def Level(path_coords):
         if level > 11:
             remaining_clicks = 600
         '''
-          
+
 
         previous_positions = []
 
@@ -537,6 +537,7 @@ def main():
             
 
         pygame.display.update()
+
 
 
 #did it go through this time?
