@@ -364,19 +364,23 @@ def Level(path_coords):
     if current_pos == path_coords[-1]:
         level += 1
         lives += 1
-        remaining_clicks = 200
-        if level > 4:
-            remaining_clicks = 300
-        if level > 5:
-          remaining_clicks = 400
-        if level > 7:
-            remaining_clicks = 500
-        if level > 9:
-            remaining_clicks = 600
-        if level > 11:
-            remaining_clicks = 700
+        remaining_clicks = 100
+        '''
         
-          
+        # SCRAPED
+        
+        if level > 4:
+            remaining_clicks = 200
+        if level > 5:
+          remaining_clicks = 300
+        if level > 7:
+            remaining_clicks = 400
+        if level > 9:
+            remaining_clicks = 500
+        if level > 11:
+            remaining_clicks = 600
+        '''
+
 
         previous_positions = []
 
@@ -443,7 +447,7 @@ def end_screen():
 
 clicks = 0
 white_tiles = []
-lives = 50
+lives = 10
 level = 1
 remaining_clicks = 100
 
@@ -469,7 +473,7 @@ def main():
         if level == 0:
           start_screen()
         elif level == 1:
-            lives = 100
+            lives = 10
             Level(path1)
         elif level == 2:
             Level(path2)
@@ -536,4 +540,5 @@ def main():
 
 
 
+#did it go through this time?
 main()
