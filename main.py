@@ -9,6 +9,13 @@ import time
 WIN = pygame.display.set_mode((500, 500))
 pygame.init()
 font = pygame.font.SysFont("Ariel", 30)
+
+# Upload image
+title_screen = pygame.image.load("tileScreen1.png")
+title_screen = pygame.transform.scale(title_screen, (500, 500))
+htptile_screen = pygame.image.load("HTPtile.png")
+htptile_screen = pygame.transform.scale(htptile_screen, (500, 500))
+
 """
                 ^
                 |
@@ -331,10 +338,12 @@ def Level(path_coords):
         pygame.draw.rect(WIN, colors["gray"], (play.x-25, play.y-25, 50, 50))
     else:
         lives -= 1  # decrease lives by 1
-        if lives <= 0:
+        if lives <= 0 and level < 7:
             print("Game Over")
-            pygame.quit()
-            sys.exit()
+            level = 0.5
+        if lives <= 0 and level >= 7:
+            print("Game Over")
+            level = 0
         play.x, play.y = path_coords[0]
         previous_positions = [path_coords[0]]
 
@@ -349,8 +358,9 @@ def Level(path_coords):
     if remaining_clicks > 0:
         if pygame.mouse.get_pressed()[0]:
             clicks += 1
+            time.sleep(0.1)
             remaining_clicks -= 1
-            time.sleep(0.05)
+            
             for pos in path_coords:
                 if abs(pos[0] - pygame.mouse.get_pos()[0]) <= 30 and abs(pos[1] - pygame.mouse.get_pos()[1]) <= 30:
                     pygame.draw.rect(WIN, colors["gray"], (pos[0]-25, pos[1]-25, 50, 50))
@@ -364,22 +374,21 @@ def Level(path_coords):
     if current_pos == path_coords[-1]:
         level += 1
         lives += 1
-        remaining_clicks = 100
-        '''
+        remaining_clicks = 15
+    
+        if level == 4:
+            remaining_clicks = 20
+        elif level == 8: 
+            remaining_clicks = 25
+        elif level == 12:
+            remaining_clicks = 30
+        elif level == 16: 
+            remaining_clicks = 35
+        elif level == 20: 
+            remaining_clicks = 40
         
-        # SCRAPED
+
         
-        if level > 4:
-            remaining_clicks = 200
-        if level > 5:
-          remaining_clicks = 300
-        if level > 7:
-            remaining_clicks = 400
-        if level > 9:
-            remaining_clicks = 500
-        if level > 11:
-            remaining_clicks = 600
-        '''
 
 
         previous_positions = []
@@ -393,6 +402,7 @@ def Level(path_coords):
          |
          |
     Level function
+
     Start & End Screen
          |
          |
@@ -400,24 +410,33 @@ def Level(path_coords):
 """
 
 
-def start_screen():
+def how_To_Play():
     global level
-    WIN.fill(colors["gray"])
-    font = pygame.font.SysFont("Ariel", 100)
-    subfont = pygame.font.SysFont("Ariel", 30)
-    Title = font.render("Tile Game", 1, colors["black"])
-    startit = subfont.render("Click Any Button to Start", 1, colors["black"])
-    WIN.blit(startit, (500/2 - startit.get_width()/2, 350))
-    WIN.blit(Title, (500/2 - Title.get_width()/2, 100))
+    WIN.blit(htptile_screen, (0, 0))
+    if pygame.mouse.get_pressed()[0]:
+        if pygame.mouse.get_pos()[0] >=  23 and pygame.mouse.get_pos()[0] <= 57:
+            if pygame.mouse.get_pos()[1] >= 30 and pygame.mouse.get_pos()[1] <= 66:
+                level = 0
 
-    for events in pygame.event.get():
-        if events.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
 
-        if events.type == pygame.KEYDOWN:
-            level = 1
+
+def start_screen():
+    global level, sys
+    WIN.blit(title_screen, (0, 0))
+    #function for start button if user clicks on the general area
+    if pygame.mouse.get_pressed()[0]:
+        if pygame.mouse.get_pos()[0] >= 148 and pygame.mouse.get_pos()[0] <= 351:
+            if pygame.mouse.get_pos()[1] >= 288 and pygame.mouse.get_pos()[1] <= 321:
+                    level = 1
+        if pygame.mouse.get_pos()[0] >= 148 and pygame.mouse.get_pos()[0] <= 351:
+            if pygame.mouse.get_pos()[1] >= 338 and pygame.mouse.get_pos()[1] <= 371:
+                    level = 0.5
+        if pygame.mouse.get_pos()[0] >= 148 and pygame.mouse.get_pos()[0] <= 351:
+            if pygame.mouse.get_pos()[1] >= 388 and pygame.mouse.get_pos()[1] <= 421:
             
+                pygame.quit()
+                sys.exit()
+                    
 
 def end_screen():
     global level
@@ -448,8 +467,8 @@ def end_screen():
 clicks = 0
 white_tiles = []
 lives = 10
-level = 1
-remaining_clicks = 100
+level = 0
+remaining_clicks = 15
 
 # Create an instance of the player
 play = player(25, 475)
@@ -472,6 +491,8 @@ def main():
         background()
         if level == 0:
           start_screen()
+        elif level == 0.5:
+            how_To_Play()
         elif level == 1:
             lives = 10
             Level(path1)
@@ -525,7 +546,7 @@ def main():
 
 
         
-        if level > 0:
+        if level > 0.5:
             # Draw text
             lives_text = font.render("Lives: " + str(lives), 1, (0,0,0))
             WIN.blit(lives_text, (10, 15))
