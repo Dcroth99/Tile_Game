@@ -10,11 +10,31 @@ WIN = pygame.display.set_mode((500, 500))
 pygame.init()
 font = pygame.font.SysFont("Ariel", 30)
 
-# Upload image
+"""
+
+                ^     
+                |
+                |
+
+ Window Setup and Package Imports
+      
+
+
+Upload images and sounds
+        |
+        |
+        v
+
+
+"""
 title_screen = pygame.image.load("tileScreen1.png")
 title_screen = pygame.transform.scale(title_screen, (500, 500))
 htptile_screen = pygame.image.load("HTPtile.png")
 htptile_screen = pygame.transform.scale(htptile_screen, (500, 500))
+
+jump_sound = pygame.mixer.Sound("jumpSound.wav")
+backgroundMusic = pygame.mixer.Sound("backgroundMusic.wav")
+backgroundMusic.play(-1)
 
 """
                 ^
@@ -125,19 +145,24 @@ class player:
 
     
     def movement(self):
+        global jump_sound
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a] and self.x > 0:
             time.sleep(0.2)
             self.x -= self.vel
+            jump_sound.play()
         if keys[pygame.K_d] and self.x < 500 - self.width:
             time.sleep(0.2)
             self.x += self.vel
+            jump_sound.play()
         if keys[pygame.K_w] and self.y > 0:
             time.sleep(0.2)
             self.y -= self.vel
+            jump_sound.play()
         if keys[pygame.K_s] and self.y < 500 - self.height:
             time.sleep(0.2)
             self.y += self.vel
+            jump_sound.play()
             
 
 
@@ -386,6 +411,8 @@ def Level(path_coords):
             remaining_clicks = 35
         elif level == 20: 
             remaining_clicks = 40
+        elif level == 21: 
+            remaining_clicks = 50
         
 
         
