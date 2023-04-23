@@ -261,9 +261,6 @@ def background():
        
  """
 
-
-
-
 path1 = [(175, 425), (175, 375), (175, 325), (175, 275), (175, 225), (175, 175), (175, 125), (175, 75)]
 
 
@@ -378,6 +375,7 @@ path25 = [(75, 75), (25, 75), (25, 125), (25, 175), (75, 175), (125, 175), (125,
           (175, 275), (175, 325), (225, 325), (225, 375), (225, 425), (175, 425), (125, 425), (125, 375),
           (75, 375), (25, 375), (25, 425)]
          
+         
 previous_positions = []
 
 
@@ -398,7 +396,7 @@ previous_positions = []
 #@function Level checks if the player is on a tile in the path
 def Level(path_coords):
     global play, previous_positions, level, lives, clicks, remaining_clicks
-    initial_clicks = [10, 10, 10, 10, 15, 15, 15, 20, 20, 20, 25, 25, 25, 30, 30, 30, 35, 35, 40, 50, 55, 60, 65, 70, 75] 
+    initial_clicks = [10, 10, 10, 10, 15, 15, 15, 20, 20, 20, 25, 25, 25, 30, 30, 30, 35, 35, 40, 50, 55, 60, 65, 70, 75, 80, 90] 
 
 
     # Check if the player is on a tile in the path
@@ -409,7 +407,7 @@ def Level(path_coords):
         pygame.draw.rect(WIN, colors["gray"], (play.x-25, play.y-25, 50, 50))
     else:
         lives -= 1  # decrease lives by 1
-        unalivedSound.set_volume(0.3)
+        unalivedSound.set_volume(0.1)
         unalivedSound.play()
         
         if lives <= 0 and level < 7:
@@ -432,9 +430,9 @@ def Level(path_coords):
     if remaining_clicks > 0:
         if pygame.mouse.get_pressed()[0]:
             clicks += 1
-            time.sleep(0.045)
+            time.sleep(0.113458)
             remaining_clicks -= 1   
-            wrongClick.set_volume(0.3) 
+            wrongClick.set_volume(0.1) 
             wrongClick.play() 
             
 
@@ -443,7 +441,7 @@ def Level(path_coords):
                 if abs(pos[0] - pygame.mouse.get_pos()[0]) <= 30 and abs(pos[1] - pygame.mouse.get_pos()[1]) <= 30:
                     pygame.draw.rect(WIN, colors["gray"], (pos[0]-25, pos[1]-25, 50, 50))
                     remaining_clicks = remaining_clicks + 1
-                    rightClick.set_volume(0.3)
+                    rightClick.set_volume(0.1)
                     rightClick.play()
                     break
     else:
@@ -453,7 +451,7 @@ def Level(path_coords):
     if current_pos == path_coords[-1]:
         lives += 1
         level += 1
-        remaining_clicks = initial_clicks[level-1]
+        remaining_clicks = initial_clicks[level]
         
     
 
