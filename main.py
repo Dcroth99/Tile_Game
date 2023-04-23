@@ -24,12 +24,14 @@ Upload images and sounds
         |
         v
 """
-title_screen = pygame.image.load("tileScreen1.png")
+title_screen = pygame.image.load("finalTitle.png")
 title_screen = pygame.transform.scale(title_screen, (500, 500))
 htptile_screen = pygame.image.load("HTPtile.png")
 htptile_screen = pygame.transform.scale(htptile_screen, (500, 500))
 end_Screen = pygame.image.load("endScreen.png")
 end_Screen = pygame.transform.scale(end_Screen, (500, 500))
+credits_Screen = pygame.image.load("creditsPage.png")
+credits_Screen = pygame.transform.scale(credits_Screen, (500, 500))
 
 jump_sound = pygame.mixer.Sound("jumpSound.wav")
 backgroundMusic = pygame.mixer.Sound("backgroundMusic.wav")
@@ -520,9 +522,14 @@ def start_screen():
                     level = 0.5
         if pygame.mouse.get_pos()[0] >= 148 and pygame.mouse.get_pos()[0] <= 351:
             if pygame.mouse.get_pos()[1] >= 388 and pygame.mouse.get_pos()[1] <= 421:
-            
                 pygame.quit()
                 sys.exit()
+        if pygame.mouse.get_pos()[0] >= 460 and pygame.mouse.get_pos()[0] <= 500:
+            if pygame.mouse.get_pos()[1] >= 480 and pygame.mouse.get_pos()[1] <= 500:
+                level = 0.25
+
+               
+                
                     
 #@function for end screen
 def end_screen():
@@ -545,7 +552,15 @@ def end_screen():
             if pygame.mouse.get_pos()[1] >= 0 and pygame.mouse.get_pos()[1] <= 500:
                 level = 0
                 
-    
+
+#@function for credits screen
+def creditsScreen():
+    global level, credits_Screen
+    WIN.blit(credits_Screen, (0, 0))
+    if pygame.mouse.get_pressed()[0]:
+        if pygame.mouse.get_pos()[0] >=  0 and pygame.mouse.get_pos()[0] <= 500:
+            if pygame.mouse.get_pos()[1] >= 0 and pygame.mouse.get_pos()[1] <= 400:
+                level = 0
 
  
 
@@ -601,6 +616,8 @@ def main():
         
         if level == 0:
           start_screen()
+        elif level == 0.25:
+            creditsScreen()
         elif level == 0.5:
             how_To_Play()
         elif level == 1:
