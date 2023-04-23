@@ -8,7 +8,43 @@ import time
 # Define the window for the game
 WIN = pygame.display.set_mode((500, 500))
 pygame.init()
-font = pygame.font.SysFont("Ariel", 30)
+font = pygame.font.SysFont("TimesNewRoman", 25, 1)
+
+#display title in window
+pygame.display.set_caption("50-50 Games")
+
+"""
+
+                ^     
+                |
+                |
+
+ Window Setup and Package Imports
+      
+
+
+Upload images and sounds
+        |
+        |
+        v
+
+
+"""
+title_screen = pygame.image.load("tileScreen1.png")
+title_screen = pygame.transform.scale(title_screen, (500, 500))
+htptile_screen = pygame.image.load("HTPtile.png")
+htptile_screen = pygame.transform.scale(htptile_screen, (500, 500))
+end_Screen = pygame.image.load("endScreen.png")
+end_Screen = pygame.transform.scale(end_Screen, (500, 500))
+
+jump_sound = pygame.mixer.Sound("jumpSound.wav")
+backgroundMusic = pygame.mixer.Sound("backgroundMusic.wav")
+unalivedSound = pygame.mixer.Sound("unalivedSound.wav")
+rightClick = pygame.mixer.Sound("rightClick.wav")
+wrongClick = pygame.mixer.Sound("wrongClick.wav")
+backgroundMusic.set_volume(0.5)
+backgroundMusic.play(-1)
+
 """
                 ^
                 |
@@ -33,10 +69,10 @@ colors = {
     "yellow": (255, 255, 0),
     "green": (0, 255, 0),
     "green1": (0, 190, 0),
-    "blue": (0, 90, 220),
+    "blue": (47, 54, 153),
     "purple": (255, 51, 255),
     "pink": (0, 0, 0),
-    "gray": (180, 180, 180),
+    "gray": (160, 160, 160),
     "brown": (150, 75, 0),
     "black": (30, 30, 30),
     "gold": (255, 215, 0)
@@ -56,6 +92,23 @@ colors = {
         |
         v
 """
+
+
+
+start_time = 0
+end_time = 0
+
+def calculate_elapsed_time():
+    global start_time, end_time
+    elapsed_time = 0
+    if end_time > 0:
+        elapsed_time = end_time - start_time
+    return elapsed_time
+
+
+    
+
+
 # Define the player  
 class player:
     def __init__(self, x, y):
@@ -118,19 +171,32 @@ class player:
 
     
     def movement(self):
+        global jump_sound
+        jump_sound.set_volume(0.5)
+        
         keys = pygame.key.get_pressed()
         if keys[pygame.K_a] and self.x > 0:
             time.sleep(0.2)
             self.x -= self.vel
+            jump_sound.play()
+            
         if keys[pygame.K_d] and self.x < 500 - self.width:
             time.sleep(0.2)
             self.x += self.vel
+            jump_sound.play()
+        
         if keys[pygame.K_w] and self.y > 0:
             time.sleep(0.2)
             self.y -= self.vel
+            jump_sound.play()
+            
         if keys[pygame.K_s] and self.y < 500 - self.height:
             time.sleep(0.2)
             self.y += self.vel
+            jump_sound.play()
+
+            
+
             
 
 
@@ -280,26 +346,37 @@ path20 = [(225, 75), (225, 125), (225, 175), (225, 225), (225, 275), (275, 275),
           (275, 425), (275, 175), (325, 175), (375, 175), (375, 225), (375, 275), (225, 375), (175, 375),
           (125, 375), (125, 325), (125, 275), (125, 225), (75, 325), (25, 325)]
 
-path21 = [(325, 75), (325, 125), (375, 125), (375, 175), (375, 225), (325, 225), (325, 275),
+path21 = [(25,125), (75,125), (75, 175), (75, 225), (125, 125), (175, 125), (175, 175), (175, 225),
+          (225, 125), (275, 125), (275, 175), (275, 225), (325, 125), (375, 125), (425, 125), (475, 125),
+          (375, 175), (375, 225), (425, 225), (425, 275), (475, 275), (475, 325), (475, 375), (425, 375),
+          (375, 375), (375, 325), (325, 325), (275, 325), (275, 375), (225, 375), (225, 425), (175, 425),
+          (125, 425), (125, 375), (75, 375), (25, 375)]
+
+path22 = [(325, 75), (325, 125), (375, 125), (375, 175), (375, 225), (325, 225), (325, 275),
           (325, 325), (375, 325), (425, 325), (425, 375), (425, 425), (375, 425), (325, 425),
           (275, 425), (275, 375), (225, 375), (175, 375), (175, 325), (175, 275), (225, 275),
           (225, 225), (225, 175), (175, 175), (175, 125), (125, 125), (75, 125), (75, 175),
           (75, 225), (75, 275), (25, 275)]
 
-path22 = [(25, 275), (75, 275), (125, 275), (125, 225), (125, 175), (75, 175), (25, 175),
+path23 = [(25, 275), (75, 275), (125, 275), (125, 225), (125, 175), (75, 175), (25, 175),
          (25, 125), (25, 75), (75, 75), (125, 75), (175, 75), (175, 125), (225, 125), (225, 175), (275, 175),
          (325, 175), (325, 225), (325, 275), (275, 275), (275, 325), (225, 325), (225, 375),
          (225, 425), (275, 425), (325, 425), (375, 425), (375, 375), (425, 375), (425, 325),
          (425, 275), (475, 275)]
 
-path23 = [(475, 175), (425, 175),
+path24 = [(475, 175), (425, 175),
          (425, 125), (375, 125), (325, 125), (325, 175), (325, 225),
          (375, 225), (375, 275), (425, 275), (425, 325), (425, 375), (375, 375), (325, 375),
          (275, 375), (225, 375), (225, 325), (225, 275), (175, 275), (175, 225), (175, 175),
          (225, 175), (225, 125), (225, 75), (175, 75), (125, 75), (125, 125), (75, 125), (75, 175),
          (75, 225), (75, 275), (25, 275), (25, 325), (25, 375), (75, 375), (75, 425)]
 
-
+path25 = [(75, 75), (25, 75), (25, 125), (25, 175), (75, 175), (125, 175), (125, 125), (175, 125), (175, 75),
+          (225, 75), (275, 75), (275, 125), (325, 125), (375, 125), (375, 75), (425, 75), (475, 75), (475, 125), (475, 175),
+          (425, 175), (425, 225), (425, 275), (425, 325), (475, 325), (475, 375), (475, 425), (425, 425), (375, 425),
+          (375, 375), (325, 375), (325, 325), (325, 275), (275, 275), (275, 225), (225, 225), (175, 225),
+          (175, 275), (175, 325), (225, 325), (225, 375), (225, 425), (175, 425), (125, 425), (125, 375),
+          (75, 375), (25, 375), (25, 425)]
          
 previous_positions = []
 
@@ -318,9 +395,10 @@ previous_positions = []
    
 """
 
+#@function Level checks if the player is on a tile in the path
 def Level(path_coords):
-
-    global play, previous_positions, level, lives, clicks, remaining_clicks, path1, path2, path3, path4, path5
+    global play, previous_positions, level, lives, clicks, remaining_clicks
+    initial_clicks = [10, 10, 10, 10, 15, 15, 15, 20, 20, 20, 25, 25, 25, 30, 30, 30, 35, 35, 40, 50, 55, 60, 65, 70, 75] 
 
 
     # Check if the player is on a tile in the path
@@ -331,10 +409,15 @@ def Level(path_coords):
         pygame.draw.rect(WIN, colors["gray"], (play.x-25, play.y-25, 50, 50))
     else:
         lives -= 1  # decrease lives by 1
-        if lives <= 0:
+        unalivedSound.set_volume(0.3)
+        unalivedSound.play()
+        
+        if lives <= 0 and level < 7:
             print("Game Over")
-            pygame.quit()
-            sys.exit()
+            level = 0.5
+        if lives <= 0 and level >= 7:
+            print("Game Over")
+            level = 0
         play.x, play.y = path_coords[0]
         previous_positions = [path_coords[0]]
 
@@ -349,34 +432,33 @@ def Level(path_coords):
     if remaining_clicks > 0:
         if pygame.mouse.get_pressed()[0]:
             clicks += 1
-            remaining_clicks -= 1
-            time.sleep(0.05)
+            time.sleep(0.045)
+            remaining_clicks -= 1   
+            wrongClick.set_volume(0.3) 
+            wrongClick.play() 
+            
+
+            
             for pos in path_coords:
                 if abs(pos[0] - pygame.mouse.get_pos()[0]) <= 30 and abs(pos[1] - pygame.mouse.get_pos()[1]) <= 30:
                     pygame.draw.rect(WIN, colors["gray"], (pos[0]-25, pos[1]-25, 50, 50))
                     remaining_clicks = remaining_clicks + 1
+                    rightClick.set_volume(0.3)
+                    rightClick.play()
                     break
-
     else:
         # No remaining clicks, keep playing the current level
         pass
     #If player reaches the end of the path, increase level by 1
     if current_pos == path_coords[-1]:
-        level += 1
         lives += 1
-        remaining_clicks = 200
-        if level > 4:
-            remaining_clicks = 300
-        if level > 5:
-          remaining_clicks = 400
-        if level > 7:
-            remaining_clicks = 500
-        if level > 9:
-            remaining_clicks = 600
-        if level > 11:
-            remaining_clicks = 700
+        level += 1
+        remaining_clicks = initial_clicks[level-1]
         
-          
+    
+
+        
+    
 
         previous_positions = []
 
@@ -389,43 +471,60 @@ def Level(path_coords):
          |
          |
     Level function
+
     Start & End Screen
          |
          |
          v
 """
 
+#@function for How to play screen
+def how_To_Play():
+    global level
+    WIN.blit(htptile_screen, (0, 0))
+    if pygame.mouse.get_pressed()[0]:
+        if pygame.mouse.get_pos()[0] >=  23 and pygame.mouse.get_pos()[0] <= 57:
+            if pygame.mouse.get_pos()[1] >= 30 and pygame.mouse.get_pos()[1] <= 66:
+                level = 0
 
+
+#@function for start screen
 def start_screen():
-    global level
-    WIN.fill(colors["gray"])
-    font = pygame.font.SysFont("Ariel", 100)
-    subfont = pygame.font.SysFont("Ariel", 30)
-    Title = font.render("Tile Game", 1, colors["black"])
-    startit = subfont.render("Click Any Button to Start", 1, colors["black"])
-    WIN.blit(startit, (500/2 - startit.get_width()/2, 350))
-    WIN.blit(Title, (500/2 - Title.get_width()/2, 100))
-
-    for events in pygame.event.get():
-        if events.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-
-        if events.type == pygame.KEYDOWN:
-            level = 1
+    global level, sys
+    WIN.blit(title_screen, (0, 0))
+    #function for start button if user clicks on the general area
+    if pygame.mouse.get_pressed()[0]:
+        if pygame.mouse.get_pos()[0] >= 148 and pygame.mouse.get_pos()[0] <= 351:
+            if pygame.mouse.get_pos()[1] >= 288 and pygame.mouse.get_pos()[1] <= 321:
+                    level = 1
+        if pygame.mouse.get_pos()[0] >= 148 and pygame.mouse.get_pos()[0] <= 351:
+            if pygame.mouse.get_pos()[1] >= 338 and pygame.mouse.get_pos()[1] <= 371:
+                    level = 0.5
+        if pygame.mouse.get_pos()[0] >= 148 and pygame.mouse.get_pos()[0] <= 351:
+            if pygame.mouse.get_pos()[1] >= 388 and pygame.mouse.get_pos()[1] <= 421:
             
-
+                pygame.quit()
+                sys.exit()
+                    
+#@function for end screen
 def end_screen():
-    global level
-    WIN.fill(colors["gray"])
-    Last = font.render("You Win!", 1, colors["black"])
-    WIN.blit(Last, (500/2 - Last.get_width()/2, 225))
-    for events in pygame.event.get():
-        if events.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
+    global level, calculate_elapsed_time
+    WIN.blit(end_Screen, (0, 0))
+    
+    elapsed_time = calculate_elapsed_time()
+    minutes = int(elapsed_time / 60000)
+    seconds = int(elapsed_time / 1000)
+    milliseconds = int(elapsed_time % 60)
 
+    if seconds >= 60:
+        seconds = int(elapsed_time / 1000) % 60
+        
+    
+    time_text = font.render("{}:{}:{:02d}".format(minutes ,seconds, milliseconds), True, colors["black"])
+    WIN.blit(time_text, (220, 290))
+    
 
+ 
 
 
 """
@@ -443,20 +542,22 @@ def end_screen():
 
 clicks = 0
 white_tiles = []
-lives = 50
-level = 1
-remaining_clicks = 100
+lives = 10
+level = 25
+remaining_clicks = 10
 
 # Create an instance of the player
 play = player(25, 475)
 
+#@function for main game
 def main():
-    global lives, level, clicks, remaining_clicks
+    global lives, level, clicks, remaining_clicks, start_time, end_time, elapsed_time
     run = True
     clock = pygame.time.Clock()
     FPS = 60
 
     while run:
+        
         clock.tick(FPS)
 
         for event in pygame.event.get():
@@ -464,12 +565,23 @@ def main():
                 run = False
                 pygame.quit()
                 sys.exit()
+            
+            if level == 1 and start_time == 0:
+                start_time = pygame.time.get_ticks()
+            elif level == 26 and end_time == 0:
+                end_time = pygame.time.get_ticks()
+
+            # Calculate the elapsed time
+            elapsed_time = calculate_elapsed_time()
 
         background()
+        
         if level == 0:
           start_screen()
+        elif level == 0.5:
+            how_To_Play()
         elif level == 1:
-            lives = 100
+            lives = 10
             Level(path1)
         elif level == 2:
             Level(path2)
@@ -516,12 +628,16 @@ def main():
         elif level == 23:
             Level(path23)
         elif level == 24:
+            Level(path24)
+        elif level == 25:
+            Level(path25)
+        elif level == 26:
             end_screen()
         
 
 
         
-        if level > 0:
+        if level > 0.5 and level < 26:
             # Draw text
             lives_text = font.render("Lives: " + str(lives), 1, (0,0,0))
             WIN.blit(lives_text, (10, 15))
@@ -534,6 +650,5 @@ def main():
 
         pygame.display.update()
 
-
-
-main()
+if __name__ == "__main__":
+    main()
