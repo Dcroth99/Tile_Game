@@ -34,6 +34,7 @@ htptile_screen = pygame.transform.scale(htptile_screen, (500, 500))
 
 jump_sound = pygame.mixer.Sound("jumpSound.wav")
 backgroundMusic = pygame.mixer.Sound("backgroundMusic.wav")
+backgroundMusic.set_volume(0.5)
 backgroundMusic.play(-1)
 
 """
