@@ -14,21 +14,15 @@ font = pygame.font.SysFont("TimesNewRoman", 25, 1)
 pygame.display.set_caption("50-50 Games")
 
 """
-
                 ^     
                 |
                 |
-
  Window Setup and Package Imports
       
-
-
 Upload images and sounds
         |
         |
         v
-
-
 """
 title_screen = pygame.image.load("tileScreen1.png")
 title_screen = pygame.transform.scale(title_screen, (500, 500))
@@ -374,6 +368,36 @@ path25 = [(75, 75), (25, 75), (25, 125), (25, 175), (75, 175), (125, 175), (125,
           (375, 375), (325, 375), (325, 325), (325, 275), (275, 275), (275, 225), (225, 225), (175, 225),
           (175, 275), (175, 325), (225, 325), (225, 375), (225, 425), (175, 425), (125, 425), (125, 375),
           (75, 375), (25, 375), (25, 425)]
+
+path26 = [(25,325), (75, 325), (75, 375), (125, 375), (175, 375), (225, 375), (225, 325), (275, 325), (325, 325), (75, 275), 
+          (75, 225), (125, 225), (125, 175), (125, 125), (175, 125), (225, 125), (275, 125), (275, 175), (325, 175), 
+          (375, 175), (375, 125), (425, 125), (475, 125), (475, 175), (475, 225), (425, 225), (425, 275),
+          (425, 325), (475, 325)]
+
+path27 = [(25, 75), (25, 125), (75, 125), (125, 125), (125, 175), (125, 225), (125, 75), (175, 75), (225, 75),
+          (275, 75), (275, 125), (325, 125), (375, 125), (375, 175), (375, 225), (375, 275), (325, 275), 
+          (275, 275), (225, 325), (225, 375), (425, 275), (475, 275), (475, 325), (475, 375), (425, 375),
+          (375, 375), (375, 425)]
+
+path28 = [(275, 425), (275, 375), (275, 325), (325, 325), (375, 325), (375, 275), (375, 225), (375, 175),
+          (375, 125), (425, 125), (325, 225), (275, 225), (275, 175), (225, 175), (175, 175), (125, 175),
+          (75, 175), (25, 175), (125, 125), (125, 75), (75, 75), (25, 75), (125, 225), (125, 275),
+          (75, 275), (75, 325), (75, 375), (125, 375), (125, 425)]
+
+
+
+path29 = [(75, 425), (75, 375), (75, 325), (125, 325), (175, 325),
+        (225, 325), (225, 375), (225, 425), (225, 275), (225, 225), (175, 225),
+        (125, 225), (75, 225), (275, 225), (325, 225), (375, 225), (425, 225),
+        (475, 225), (475, 175), (475, 125), (425, 125), (375, 125), (325, 125),
+        (275, 125), (225, 125), (175, 125), (125, 125), (75, 125), (75, 75)]
+
+path30 = [(175, 425), (175, 375), (125, 375), (125, 325), (125, 275),
+        (175, 275), (225, 275), (225, 225), (225, 175), (225, 125), (175, 175),
+        (275, 175), (275, 275), (325, 275), (325, 325), (325, 375), (275, 375),
+        (275, 425), (375, 375), (375, 425), (425, 425), (475, 425), (475, 375),
+        (475, 325), (475, 275), (475, 225), (475, 175), (475, 125), (425, 125),
+        (375, 125), (375, 175), (425, 275), (375, 75), (325, 75)]
          
          
 previous_positions = []
@@ -396,7 +420,7 @@ previous_positions = []
 #@function Level checks if the player is on a tile in the path
 def Level(path_coords):
     global play, previous_positions, level, lives, clicks, remaining_clicks
-    initial_clicks = [10, 10, 10, 10, 15, 15, 15, 20, 20, 20, 25, 25, 25, 30, 30, 30, 35, 35, 40, 50, 55, 60, 65, 70, 75, 80, 90] 
+    initial_clicks = [11, 10, 10, 10, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 20, 20, 20, 25, 25, 30, 30, 30, 35, 35, 35, 35, 35, 35, 40, 40, 40, 40, 40, 40, 40] 
 
 
     # Check if the player is on a tile in the path
@@ -430,19 +454,18 @@ def Level(path_coords):
     if remaining_clicks > 0:
         if pygame.mouse.get_pressed()[0]:
             clicks += 1
-            time.sleep(0.11)
+            time.sleep(0.09)
             remaining_clicks -= 1   
-            wrongClick.set_volume(0.1) 
-            wrongClick.play() 
-            
-
+            time.sleep(0.03)
+            wrongClick.set_volume(0.1)
+            wrongClick.play()
             
             for pos in path_coords:
                 if abs(pos[0] - pygame.mouse.get_pos()[0]) <= 30 and abs(pos[1] - pygame.mouse.get_pos()[1]) <= 30:
                     pygame.draw.rect(WIN, colors["gray"], (pos[0]-25, pos[1]-25, 50, 50))
                     remaining_clicks = remaining_clicks + 1
-                    rightClick.set_volume(0.1)
-                    rightClick.play()
+                    wrongClick.stop()
+
                     break
     else:
         # No remaining clicks, keep playing the current level
@@ -469,7 +492,6 @@ def Level(path_coords):
          |
          |
     Level function
-
     Start & End Screen
          |
          |
@@ -506,7 +528,7 @@ def start_screen():
                     
 #@function for end screen
 def end_screen():
-    global level, calculate_elapsed_time
+    global level, calculate_elapsed_time, start_time, end_time, elapsed_time
     WIN.blit(end_Screen, (0, 0))
     
     elapsed_time = calculate_elapsed_time()
@@ -520,6 +542,11 @@ def end_screen():
     
     time_text = font.render("{}:{}:{:02d}".format(minutes ,seconds, milliseconds), True, colors["black"])
     WIN.blit(time_text, (220, 290))
+    if pygame.mouse.get_pressed()[0]:
+        if pygame.mouse.get_pos()[0] >=  0 and pygame.mouse.get_pos()[0] <= 500:
+            if pygame.mouse.get_pos()[1] >= 0 and pygame.mouse.get_pos()[1] <= 500:
+                level = 0
+                
     
 
  
@@ -540,9 +567,9 @@ def end_screen():
 
 clicks = 0
 white_tiles = []
-lives = 10
+lives = 6
 level = 0
-remaining_clicks = 10
+remaining_clicks = 11
 
 # Create an instance of the player
 play = player(25, 475)
@@ -579,7 +606,7 @@ def main():
         elif level == 0.5:
             how_To_Play()
         elif level == 1:
-            lives = 10
+            lives = 5
             Level(path1)
         elif level == 2:
             Level(path2)
@@ -630,12 +657,23 @@ def main():
         elif level == 25:
             Level(path25)
         elif level == 26:
+            Level(path26)
+        elif level == 27:
+            Level(path27)
+        elif level == 28:
+            Level(path28)
+        elif level == 29:
+            Level(path29)
+        elif level == 30:
+            Level(path30)
+        elif level == 31:
             end_screen()
         
+        
 
 
         
-        if level > 0.5 and level < 26:
+        if level > 0.5 and level < 31:
             # Draw text
             lives_text = font.render("Lives: " + str(lives), 1, (0,0,0))
             WIN.blit(lives_text, (10, 15))
