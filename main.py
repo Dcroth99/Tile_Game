@@ -455,8 +455,7 @@ def Level(path_coords):
         if pygame.mouse.get_pressed()[0]:
             clicks += 1
             time.sleep(0.09)
-            remaining_clicks -= 1   
-            time.sleep(0.03)
+            remaining_clicks -= 1  
             wrongClick.set_volume(0.1)
             wrongClick.play()
             
