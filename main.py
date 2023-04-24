@@ -423,7 +423,7 @@ previous_positions = []
 #@function Level checks if the player is on a tile in the path
 def Level(path_coords):
     global play, previous_positions, level, lives, clicks, remaining_clicks
-    initial_clicks = [11, 10, 10, 10, 15, 15, 15, 15, 15, 15, 15, 15, 20, 20, 20, 20, 20, 20, 25, 25, 30, 30, 30, 35, 35, 35, 35, 35, 35, 40, 40, 40, 40, 40, 40, 40] 
+    initial_clicks = [10, 10, 12, 15, 15, 15, 15, 15, 15, 15, 20, 20, 20, 25, 25, 25, 25, 25, 25, 25, 30, 30, 30, 35, 35, 35, 35, 35, 35, 40, 40, 40, 40, 40, 40, 40] 
 
 
     # Check if the player is on a tile in the path
@@ -608,7 +608,7 @@ def main():
             
             if level == 1 and start_time == 0:
                 start_time = pygame.time.get_ticks()
-            elif level == 26 and end_time == 0:
+            elif level == 31 and end_time == 0:
                 end_time = pygame.time.get_ticks()
 
             # Calculate the elapsed time
